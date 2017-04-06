@@ -48,8 +48,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -152,6 +152,7 @@
             this.button2.TabIndex = 9;
             this.button2.Text = "Объеденить листы";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tabControl1
@@ -225,15 +226,15 @@
             // 
             this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(0, 3, 50, 2);
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(803, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(834, 17);
             this.toolStripStatusLabel2.Spring = true;
             this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 22);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 0);
             // 
             // Main
             // 

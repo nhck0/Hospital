@@ -153,32 +153,27 @@ namespace Hospital
                 fillDGV();
 
                 proc.toolStripStatusLabel2.Text = "Данные на основе таблицы: ";
-                
 
                 if (proc.dataGridView7.Rows.Count == 0)
                 {
                     proc.toolStripStatusLabel1.Text = "Ошибок не найдено!";
+                    proc.button2.Enabled = false;
                 }
                 else
                 {
                     proc.toolStripStatusLabel1.Text = "Найдены ошибки!";
                     proc.tabControl1.SelectedIndex = 5;
+                    proc.button2.Enabled = true;
                     MessageBox.Show("Найдены ошибки!", "Ошибки!",
-                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    
+                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);   
                 }
-
-                proc.button2.Enabled = true;
                 this.Hide();
             }
-
             catch (Exception ex)
             {
-                
                 MessageBox.Show("Что-то пошло не так: " + Environment.NewLine +
                    Environment.NewLine + ex.ToString(), "Ошибка!",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-               
             }
             
         }

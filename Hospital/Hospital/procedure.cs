@@ -108,9 +108,33 @@ namespace Hospital
             }
             ds.Tables.RemoveAt(0);
         }
-        private void procedure_FormClosing(object sender, FormClosingEventArgs e)
+        private void saveChange()
         {
-            this.Hide();
+            try
+            {
+                copyToDT();
+
+                using (SqlConnection sqlcon = new SqlConnection(GetConnectionString()))
+                {
+                    string sql = "DELETE FROM " + toolStripStatusLabel3.Text + " where " + toolStripStatusLabel3.Text + ".[Код медицинского работника] = '0' ";
+                    sqlcon.Open();
+                    SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                    cmd.ExecuteNonQuery();
+                    sqlcon.Close();
+
+                    sqlBulk();
+
+                    button2.Enabled = false;
+
+                    MessageBox.Show("Обновите таблицы!", "Информация",
+                          MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Обновите таблицы!", "Ошибка",
+                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void overwriting()
         {
@@ -122,42 +146,39 @@ namespace Hospital
                     toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4).Remove(0, 1) + "\\";
 
                 DirectoryInfo dirInf = new DirectoryInfo(folderName);
-
-
-                if (dirInf.Exists)
+                if (dataGridView7.Rows.Count > 0)
                 {
-                    DialogResult result = MessageBox.Show("Отчеты за этот месяц уже сформированы,"+ Environment.NewLine+
-                        "данные будут перезаписаны, продолжить ?",
-                        "Перезапись", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
-
-                    if (result == DialogResult.Yes)
-                    {
-                        excelSave(dataGridView2, tabPage2);
-                        excelSave(dataGridView3, tabPage3);
-                        excelSave(dataGridView4, tabPage4);
-                        excelSave(dataGridView5, tabPage5);
-                        excelSave(dataGridView6, tabPage6);
-
-                        MessageBox.Show("Отчеты перезаписаны!", "Перезапись отчетов",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    if (result == DialogResult.No)
-                    {
-
-                    }
+                    MessageBox.Show("После исправления ошибок необходимо обновить таблицы!", "Предупреждение!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    Directory.CreateDirectory(folderName);
-
-                    if (dataGridView7.Rows.Count > 0)
+                    if (dirInf.Exists)
                     {
-                        MessageBox.Show("После исправления ошибок необходимо обновить таблицы!", "Предупреждение!",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        DialogResult result = MessageBox.Show("Отчеты за этот месяц уже сформированы," + Environment.NewLine +
+                            "данные будут перезаписаны, продолжить ?",
+                            "Перезапись", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            excelSave(dataGridView2, tabPage2);
+                            excelSave(dataGridView3, tabPage3);
+                            excelSave(dataGridView4, tabPage4);
+                            excelSave(dataGridView5, tabPage5);
+                            excelSave(dataGridView6, tabPage6);
+
+                            MessageBox.Show("Отчеты перезаписаны!", "Перезапись отчетов",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        if (result == DialogResult.No)
+                        {
+
+                        }
                     }
                     else
                     {
+                        Directory.CreateDirectory(folderName);
+
                         excelSave(dataGridView2, tabPage2);
                         excelSave(dataGridView3, tabPage3);
                         excelSave(dataGridView4, tabPage4);
@@ -175,6 +196,11 @@ namespace Hospital
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void procedure_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+        }
+       
         //procDialog
         private void button1_Click(object sender, EventArgs e)
         {
@@ -188,7 +214,7 @@ namespace Hospital
             button2.Visible = false;
             this.AcceptButton = button1;
         }
-        //saveExcel
+        //saveReports
         private void button3_Click(object sender, EventArgs e)
         {
             overwriting();
@@ -205,38 +231,24 @@ namespace Hospital
                         sum++;
                     }
                 }
-
             if (sum > 0)
             {
                 MessageBox.Show("В таблице остались оишбки!" + Environment.NewLine + "Количество ошибок: " + sum, "Предупреждение!",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             } else
             {
-                copyToDT();
-
-                using (SqlConnection sqlcon = new SqlConnection(GetConnectionString()))
-                {
-                string sql = "DELETE FROM " + toolStripStatusLabel3.Text + " where " + toolStripStatusLabel3.Text + ".[Код медицинского работника] = '0' ";
-                sqlcon.Open();
-                SqlCommand cmd = new SqlCommand(sql, sqlcon);
-                cmd.ExecuteNonQuery();
-                sqlcon.Close();
-
-                sqlBulk();
-
-                button2.Enabled = false;
-
-                MessageBox.Show("Обновите таблицы!", "Информация",
-                      MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                saveChange();
             }
-        }
-
+        }        
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 5)
             {
                 button2.Visible = true;
+                if(dataGridView7.Rows.Count < 1)
+                {
+                    button2.Enabled = false;
+                }
             }
             else button2.Visible = false;
         }
@@ -248,11 +260,8 @@ namespace Hospital
 
         private void сохранитьОтчетыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            excelSave(dataGridView2, tabPage2);
-            excelSave(dataGridView3, tabPage3);
-            excelSave(dataGridView4, tabPage4);
-            excelSave(dataGridView5, tabPage5);
-            excelSave(dataGridView6, tabPage6);
+            overwriting();
+
             GC.Collect();
         }
 
