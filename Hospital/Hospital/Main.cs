@@ -125,10 +125,10 @@ namespace Hospital
                     con.Close();
 
                 }
-                catch(Exception ex)
+                catch(Exception)
                 {
-                    MessageBox.Show("Что-то пошло не так :" + Environment.NewLine +
-                        Environment.NewLine + ex.ToString(), "Ошибка!",
+                    button3.Enabled = false;
+                    MessageBox.Show("Содержимое файла не соответствует требуему формату", "Ошибка!",
                         MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
 
