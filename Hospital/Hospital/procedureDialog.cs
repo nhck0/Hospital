@@ -124,8 +124,7 @@ namespace Hospital
                 proc.toolStripStatusLabel3.Text = "";
                 MessageBox.Show("Что-то пошло не так " + Environment.NewLine +
                    Environment.NewLine + "Такой таблицы не существует!", "Ошибка!",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
-               
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);              
             }
         }
         private void procedureDialog_Load(object sender, EventArgs e)
@@ -139,9 +138,6 @@ namespace Hospital
             DataTable visits = ds.Tables.Add("Посещения по отделениям");
             DataTable disp = ds.Tables.Add("Диспансеризация");
             DataTable problem = ds.Tables.Add("Найти ошибки");
-
-            // textBox1.Focus();
-
         }
 
         //sql procedure
@@ -174,8 +170,7 @@ namespace Hospital
                 MessageBox.Show("Что-то пошло не так: " + Environment.NewLine +
                    Environment.NewLine + ex.ToString(), "Ошибка!",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            }            
         }
 
         private void button2_Click(object sender, EventArgs e)

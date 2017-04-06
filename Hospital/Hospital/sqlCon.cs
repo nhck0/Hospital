@@ -59,8 +59,7 @@ namespace Hospital
                         {
                             MessageBox.Show(ex.Message);
                         }
-                    }
-                    
+                    }                   
                 }
             }
         }
@@ -71,7 +70,6 @@ namespace Hospital
 
             switch (dataType)
             {
-
                 case ("Номер истории болезни"):
                     DTTemp = DataType.VarChar(50);
                     break;
@@ -123,7 +121,6 @@ namespace Hospital
                 case ("Признак учета при контроле объемов по ТП"):
                     DTTemp = DataType.Bit;
                     break;
-
             }
             return DTTemp;
         }
@@ -158,7 +155,6 @@ namespace Hospital
 
                         newTable.Columns.Add(tempC);
                     }
-
                     //  key
                     //Index index = new Index(newTable, "ID");
                     //index.IndexKeyType = IndexKeyType.DriPrimaryKey;
@@ -166,7 +162,6 @@ namespace Hospital
                     //newTable.Indexes.Add(index);
 
                     newTable.Create();
-
                 }
                 bulkCopy();
 

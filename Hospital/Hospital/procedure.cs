@@ -38,7 +38,6 @@ namespace Hospital
             ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
             ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
             
-
             for (int i = 1; i < dgv.Columns.Count + 1; i++)
             {
                 ExcelWorkSheet.Cells[1, i] = dgv.Columns[i - 1].HeaderText;
@@ -60,8 +59,7 @@ namespace Hospital
             ExcelApp = null;
         }
         private void copyToDT()
-        {
-            
+        {         
             System.Data.DataTable dt = ds.Tables.Add("problem");
             for (int iCol = 0; iCol < dataGridView7.Columns.Count; iCol++)
             {

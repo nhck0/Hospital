@@ -23,14 +23,10 @@ namespace Hospital
             InitializeComponent();
         }
         OpenFileDialog ofd = new OpenFileDialog();
-        //ExcelObj.Workbook workbook;
-        //ExcelObj.Worksheet NwSheet;
-        //ExcelObj.Range ShtRange;
         DataTable tb = new DataTable();
         DataTable tb2 = new DataTable();
         public DataSet ds = new DataSet();
-
-        
+      
         private void Main_Load(object sender, EventArgs e)
         {
             button2.Enabled = false;
@@ -53,14 +49,12 @@ namespace Hospital
                 ofd.Filter = "All files(*.*)|*.*|Excel 2007(*.xlsx)|*.xlsx|Excel 2003(*.xls)|*.xls";
                 ofd.Title = "Выберите документ для загрузки данных";
 
-                importTB();
-                
+                importTB();               
             }
             catch (Exception ex/*System.Runtime.InteropServices.COMException*/)
             {
                 MessageBox.Show("Что-то пошло не так:" + Environment.NewLine +
                     Environment.NewLine + ex.Message);
-
             }
         }
         //importTable in dgv.ds
@@ -75,7 +69,6 @@ namespace Hospital
                 //tb.Columns.Clear();
                 try
                 {
-
                     toolStripStatusLabel2.Text = "Директория файла: " + ofd.FileName;
 
                     String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
@@ -104,7 +97,6 @@ namespace Hospital
                     con.Close();
                     dataGridView1.DataSource = tb;
                    
-
                     //if (schemaTable.Rows.Count == 2)
                     //{
                     //    button2.Enabled = true;
@@ -121,9 +113,7 @@ namespace Hospital
                     //    con.Close();
                     //    dataGridView1.DataSource = tb2;
                     //}
-
                     con.Close();
-
                 }
                 catch(Exception)
                 {
@@ -131,16 +121,13 @@ namespace Hospital
                     MessageBox.Show("Содержимое файла не соответствует требуему формату", "Ошибка!",
                         MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
-
             }
             else
                 {
                     MessageBox.Show("Вы не выбрали файл для открытия",
                         "Загрузка данных...", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-
             }
-
         // gluing
         private void button2_Click(object sender, EventArgs e)
         {
