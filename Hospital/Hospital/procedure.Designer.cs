@@ -193,7 +193,7 @@
             this.tabPage3.Controls.Add(this.dataGridView3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(795, 209);
+            this.tabPage3.Size = new System.Drawing.Size(807, 205);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Нормативы мед помощи";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -204,7 +204,7 @@
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(0, 0);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(795, 209);
+            this.dataGridView3.Size = new System.Drawing.Size(807, 205);
             this.dataGridView3.TabIndex = 0;
             // 
             // tabPage4
@@ -212,7 +212,7 @@
             this.tabPage4.Controls.Add(this.dataGridView4);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(795, 209);
+            this.tabPage4.Size = new System.Drawing.Size(807, 205);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Услуги амбулаторной хирургии";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -223,7 +223,7 @@
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(795, 209);
+            this.dataGridView4.Size = new System.Drawing.Size(807, 205);
             this.dataGridView4.TabIndex = 0;
             // 
             // tabPage5
@@ -231,7 +231,7 @@
             this.tabPage5.Controls.Add(this.dataGridView5);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(795, 209);
+            this.tabPage5.Size = new System.Drawing.Size(807, 205);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Посещения по отделениям";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -242,7 +242,7 @@
             this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView5.Location = new System.Drawing.Point(0, 0);
             this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.Size = new System.Drawing.Size(795, 209);
+            this.dataGridView5.Size = new System.Drawing.Size(807, 205);
             this.dataGridView5.TabIndex = 0;
             // 
             // tabPage6
@@ -250,7 +250,7 @@
             this.tabPage6.Controls.Add(this.dataGridView6);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(795, 209);
+            this.tabPage6.Size = new System.Drawing.Size(807, 205);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Диспансеризация";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -261,7 +261,7 @@
             this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView6.Location = new System.Drawing.Point(0, 0);
             this.dataGridView6.Name = "dataGridView6";
-            this.dataGridView6.Size = new System.Drawing.Size(795, 209);
+            this.dataGridView6.Size = new System.Drawing.Size(807, 205);
             this.dataGridView6.TabIndex = 0;
             // 
             // tabPage7
