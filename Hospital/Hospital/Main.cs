@@ -194,6 +194,12 @@ namespace Hospital
         {
             Application.Exit();
         }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aboutTheProgram atp = new aboutTheProgram();
+            atp.Show();
+        }
     }    
 }
 

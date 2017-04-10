@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aboutTheProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="aboutTheProgram.Designer.cs">
+      <DependentUpon>aboutTheProgram.cs</DependentUpon>
+    </Compile>
     <Compile Include="hospitalDataSet.cs">
       <DependentUpon>hospitalDataSet.xsd</DependentUpon>
     </Compile>
@@ -96,6 +102,9 @@
     <Compile Include="sqlCon.Designer.cs">
       <DependentUpon>sqlCon.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="aboutTheProgram.resx">
+      <DependentUpon>aboutTheProgram.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

@@ -117,6 +117,7 @@ namespace Hospital
                 proc.dataGridView2.DataSource = ds.Tables[3];
                 proc.dataGridView3.DataSource = ds.Tables[4];
                 proc.dataGridView5.DataSource = ds.Tables[5];
+                this.Hide();
             }
             catch(Exception)
             {
@@ -164,7 +165,7 @@ namespace Hospital
                     MessageBox.Show("Найдены ошибки!", "Ошибки!",
                      MessageBoxButtons.OK, MessageBoxIcon.Exclamation);   
                 }
-                this.Hide();
+                
             }
             catch (Exception ex)
             {

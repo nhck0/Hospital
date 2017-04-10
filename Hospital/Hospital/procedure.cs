@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Microsoft.Office.Interop.Excel;
 using System.IO;
+using System.Globalization;
 
 namespace Hospital
 {
@@ -39,14 +40,18 @@ namespace Hospital
             ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
 
             ExcelWorkSheet.Cells[1,1] = "Данные реестров мед помощи";
-            ExcelWorkSheet.Cells[2, 1] = DateTime.Now.ToShortDateString().ToString() ;
-            ExcelWorkSheet.Cells[3,1] = "За период с  по  ";
+            ExcelWorkSheet.Cells[2,1] = DateTime.Now.ToShortDateString().ToString() ;
+            ExcelWorkSheet.Cells[3,1] = "За период с 01." + DateTime.ParseExact(toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month + "." +
+                toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4)+ " по " +
+                DateTime.DaysInMonth(Convert.ToInt32( toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4)), DateTime.ParseExact(toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month) + "." + 
+                DateTime.ParseExact(toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month + "." +
+                toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4);
             ExcelWorkSheet.Cells[4,1] = "МО: 1637 Полевская ЦГБ";
 
             for (int i = 1; i < dgv.Columns.Count + 1; i++)
             {
                 ExcelWorkSheet.Cells[6, i] = dgv.Columns[i - 1].HeaderText;
-            }
+            } 
 
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
@@ -145,13 +150,12 @@ namespace Hospital
             {
                 folderName = "C:\\Users\\Норд\\Desktop\\Отчеты\\" +
                     toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4) + "\\" +
-                    toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4).Substring(0, 1).ToUpper() +
-                    toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4).Remove(0, 1) + "\\";
+                    toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4) + "\\";
 
                 DirectoryInfo dirInf = new DirectoryInfo(folderName);
                 if (dataGridView7.Rows.Count > 0)
                 {
-                    MessageBox.Show("После исправления ошибок необходимо обновить таблицы!", "Предупреждение!",
+                    MessageBox.Show("После исправления ошибок" + Environment.NewLine + "необходимо обновить таблицы!", "Предупреждение!",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
@@ -236,7 +240,7 @@ namespace Hospital
                 }
             if (sum > 0)
             {
-                MessageBox.Show("В таблице остались оишбки!" + Environment.NewLine + "Количество ошибок: " + sum, "Предупреждение!",
+                MessageBox.Show("В таблице остались ошибки!" + Environment.NewLine + "Количество ошибок: " + sum, "Предупреждение!",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             } else
             {
@@ -271,6 +275,12 @@ namespace Hospital
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aboutTheProgram atp = new aboutTheProgram();
+            atp.Show();
         }
     }
 }
