@@ -37,17 +37,22 @@ namespace Hospital
 
             ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
             ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
-            
+
+            ExcelWorkSheet.Cells[1,1] = "Данные реестров мед помощи";
+            ExcelWorkSheet.Cells[2, 1] = DateTime.Now.ToShortDateString().ToString() ;
+            ExcelWorkSheet.Cells[3,1] = "За период с  по  ";
+            ExcelWorkSheet.Cells[4,1] = "МО: 1637 Полевская ЦГБ";
+
             for (int i = 1; i < dgv.Columns.Count + 1; i++)
             {
-                ExcelWorkSheet.Cells[1, i] = dgv.Columns[i - 1].HeaderText;
+                ExcelWorkSheet.Cells[6, i] = dgv.Columns[i - 1].HeaderText;
             }
 
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
                 for (int j = 0; j < dgv.ColumnCount; j++)
                 {
-                    ExcelApp.Cells[i + 2, j + 1] = dgv.Rows[i].Cells[j].Value;
+                    ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
                 }
             }
             ExcelApp.Columns.AutoFit();

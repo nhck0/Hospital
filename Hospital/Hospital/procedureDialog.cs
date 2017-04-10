@@ -94,7 +94,7 @@ namespace Hospital
                     {
                         var sqlCmd = new SqlCommand("assembleAll", sqlConn);
                         sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.AddWithValue("@nameTab", textBox1.Text);
+                        sqlCmd.Parameters.AddWithValue("@nameTab", dateTimePicker1.Text);
 
                         sqlConn.Open();
                         sqlCmd.ExecuteNonQuery();
@@ -103,15 +103,14 @@ namespace Hospital
 
             foreach (var collProc in nameProcWP)
             {
-                procWithParam(collProc, textBox1.Text);
+                procWithParam(collProc, dateTimePicker1.Text);
             }
 
             foreach (var collProc in nameProcWOP)
             {
                 procWithOutParam(collProc);
             }
-
-                proc.toolStripStatusLabel3.Text = textBox1.Text;
+                proc.toolStripStatusLabel3.Text = dateTimePicker1.Text;
                 proc.dataGridView4.DataSource = ds.Tables[0];
                 proc.dataGridView6.DataSource = ds.Tables[1];
                 proc.dataGridView7.DataSource = ds.Tables[2];
@@ -131,7 +130,9 @@ namespace Hospital
         {
             procedure proc = this.Owner as procedure;
             this.AcceptButton = button1;
-            textBox1.Text = proc.toolStripStatusLabel3.Text;
+            dateTimePicker1.CustomFormat = "MMMMyyyy";
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.Text = proc.toolStripStatusLabel3.Text;
             DataTable posvr = ds.Tables.Add("Посещения по врачам");
             DataTable standarts = ds.Tables.Add("Нормативы мед помощи");
             DataTable uslug = ds.Tables.Add("Услуги амублаторной хирургии");
