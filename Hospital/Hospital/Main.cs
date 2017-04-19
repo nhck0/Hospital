@@ -34,13 +34,44 @@ namespace Hospital
             button3.Enabled = false;
         }
         //connStringSql
-        private static string GetConnectionString()
+        public static string GetConnectionString()
         {
             return "Data Source=NORD\\MSSQLSERVER1; " +
                 " Integrated Security=true;" +
                 "Initial Catalog=hospital;";
         }
 
+        //sqlbulk
+        private void sqlBulk()
+        {
+
+            string connectionString = GetConnectionString();
+            // Open a connection to the hospital database.
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Create the SqlBulkCopy object. 
+                // Note that the column positions in the source DataTable 
+                // match the column positions in the destination table so 
+                // there is no need to map columns. 
+                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+                {
+                    try
+                    {
+                        bulkCopy.DestinationTableName = "RepStaf196";
+
+                        bulkCopy.WriteToServer(ds.Tables[0]);
+                        connection.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
         //openFileDialog
         private void openFile(string columnsName)
         {
@@ -208,6 +239,21 @@ namespace Hospital
         {
             openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
             toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+
+            //test
+            using (SqlConnection sqlcon = new SqlConnection(GetConnectionString()))
+            {
+                string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
+                sqlcon.Open();
+                SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                cmd.ExecuteNonQuery();
+                sqlcon.Close();
+
+                sqlBulk();
+
+                MessageBox.Show("Штат обновлен!", "Информация",
+                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } 
         }
 
         private void штатToolStripMenuItem_Click(object sender, EventArgs e)

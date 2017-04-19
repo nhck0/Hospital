@@ -35,6 +35,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.штатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,13 +46,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.button5 = new System.Windows.Forms.Button();
-            this.штатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -63,12 +63,12 @@
             // 
             // button1
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.Location = new System.Drawing.Point(0, 290);
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Location = new System.Drawing.Point(0, 105);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(81, 42);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Запросы";
+            this.button1.Text = "Отчеты";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -110,11 +110,18 @@
             this.openToolStripMenuItem.Text = "Реестр";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click_1);
             // 
+            // штатToolStripMenuItem
+            // 
+            this.штатToolStripMenuItem.Name = "штатToolStripMenuItem";
+            this.штатToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.штатToolStripMenuItem.Text = "Штат";
+            this.штатToolStripMenuItem.Click += new System.EventHandler(this.штатToolStripMenuItem_Click);
+            // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
             this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.выходToolStripMenuItem.Text = "Запросы";
+            this.выходToolStripMenuItem.Text = "Отчеты";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
@@ -150,7 +157,7 @@
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Top;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(0, 105);
+            this.button2.Location = new System.Drawing.Point(0, 147);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(81, 35);
             this.button2.TabIndex = 9;
@@ -195,8 +202,8 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -204,6 +211,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(81, 332);
             this.panel1.TabIndex = 12;
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button5.Location = new System.Drawing.Point(0, 35);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(81, 35);
+            this.button5.TabIndex = 13;
+            this.button5.Text = "Штат";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -240,24 +258,6 @@
             this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 0);
-            // 
-            // button5
-            // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.Location = new System.Drawing.Point(0, 35);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 35);
-            this.button5.TabIndex = 13;
-            this.button5.Text = "Штат";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // штатToolStripMenuItem
-            // 
-            this.штатToolStripMenuItem.Name = "штатToolStripMenuItem";
-            this.штатToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.штатToolStripMenuItem.Text = "Штат";
-            this.штатToolStripMenuItem.Click += new System.EventHandler(this.штатToolStripMenuItem_Click);
             // 
             // Main
             // 

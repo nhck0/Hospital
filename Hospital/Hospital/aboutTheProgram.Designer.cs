@@ -40,7 +40,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(241, 156);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Hospital\r\nВерсия v1.0 [10.04.2017]\r\nПрограмма для обработки данных медицинской по" +
+            this.label3.Text = "Hospital\r\nВерсия v1.0 [19.04.2017]\r\nПрограмма для обработки данных медицинской по" +
     "мощи\r\n\r\nСоздано: Козьминых Владимир Сегреевич, 2017.\r\n\r\nПочта: atobarlv@yandex.r" +
     "u\r\n\r\n\r\n";
             // 
