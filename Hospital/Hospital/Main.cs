@@ -41,7 +41,7 @@ namespace Hospital
                 "Initial Catalog=hospital;";
         }
 
-        //sqlbulk
+        //sqlbulk ISPRAVIT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private void sqlBulk()
         {
 
@@ -234,7 +234,7 @@ namespace Hospital
             aboutTheProgram atp = new aboutTheProgram();
             atp.Show();
         }
-
+        // ISPTARIT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private void button5_Click(object sender, EventArgs e)
         {
             openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
@@ -255,11 +255,25 @@ namespace Hospital
                          MessageBoxButtons.OK, MessageBoxIcon.Information);
             } 
         }
-
+        // ISPRAVIT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private void штатToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
             toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+
+            using (SqlConnection sqlcon = new SqlConnection(GetConnectionString()))
+            {
+                string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
+                sqlcon.Open();
+                SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                cmd.ExecuteNonQuery();
+                sqlcon.Close();
+
+                sqlBulk();
+
+                MessageBox.Show("Штат обновлен!", "Информация",
+                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }    
 }
