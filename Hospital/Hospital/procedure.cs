@@ -35,18 +35,31 @@ namespace Hospital
             Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
             Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
+            Microsoft.Office.Interop.Excel.Range ExcelRange;
+            Microsoft.Office.Interop.Excel.Range ExcelRange2;
 
             ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
             ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
 
-            ExcelWorkSheet.Cells[1,1] = "Данные реестров мед помощи";
-            ExcelWorkSheet.Cells[2,1] = DateTime.Now.ToShortDateString().ToString() ;
-            ExcelWorkSheet.Cells[3,1] = "За период с 01." + DateTime.ParseExact(toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month + "." +
-                toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4)+ " по " +
-                DateTime.DaysInMonth(Convert.ToInt32( toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4)), DateTime.ParseExact(toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month) + "." + 
+            ExcelWorkSheet.Cells[1, 1] = "Данные реестров мед помощи";
+            ExcelWorkSheet.Cells[2, 1] = DateTime.Now.ToShortDateString().ToString();
+            ExcelWorkSheet.Cells[3, 1] = "За период с 01." + DateTime.ParseExact(toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month + "." +
+                toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4) + " по " +
+                DateTime.DaysInMonth(Convert.ToInt32(toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4)), DateTime.ParseExact(toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month) + "." +
                 DateTime.ParseExact(toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month + "." +
                 toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4);
-            ExcelWorkSheet.Cells[4,1] = "МО: 1637 Полевская ЦГБ";
+            ExcelWorkSheet.Cells[4, 1] = "МО: 1637 Полевская ЦГБ";
+
+            ExcelWorkSheet.Range[ExcelWorkSheet.Cells[5, 1], ExcelWorkSheet.Cells[5, dgv.Columns.Count]].Merge(Type.Missing);
+            ExcelWorkSheet.Cells[5, 1] = tabp.Text;
+            ExcelRange = ExcelWorkSheet.get_Range("A5", "A5");
+            ExcelRange.HorizontalAlignment = Constants.xlCenter;
+            ExcelRange.VerticalAlignment = Constants.xlCenter;
+
+            ExcelRange2 = ExcelWorkSheet.get_Range("5:" + (dgv.Rows.Count + 5), Type.Missing);
+            //ExcelRange2 = ExcelWorkSheet.get_Range("A5", "C15");
+            //ExcelRange2 = ExcelWorkSheet.get_Range(ExcelWorkSheet.Cells[1, 1], ExcelWorkSheet.Cells[3, 3]);
+            ExcelRange2.Borders.ColorIndex = 0; 
 
             for (int i = 1; i < dgv.Columns.Count + 1; i++)
             {
@@ -58,6 +71,10 @@ namespace Hospital
                 for (int j = 0; j < dgv.ColumnCount; j++)
                 {
                     ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
+                    if (dgv.Rows[i].Cells[j].Value.ToString() == "")
+                    {
+                        ExcelApp.Cells[i + 7, j + 1] = "0";
+                    }
                 }
             }
             ExcelApp.Columns.AutoFit();
@@ -197,9 +214,9 @@ namespace Hospital
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Обновите таблицы!", "Ошибка",
+                MessageBox.Show("Обновите таблицы!" + ex, "Ошибка",
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

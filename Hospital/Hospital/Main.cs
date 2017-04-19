@@ -22,6 +22,7 @@ namespace Hospital
         {
             InitializeComponent();
         }
+        
         OpenFileDialog ofd = new OpenFileDialog();
         DataTable tb = new DataTable();
         DataTable tb2 = new DataTable();
@@ -41,7 +42,7 @@ namespace Hospital
         }
 
         //openFileDialog
-        private void openFile()
+        private void openFile(string columnsName)
         {
             try
             {
@@ -49,24 +50,24 @@ namespace Hospital
                 ofd.Filter = "All files(*.*)|*.*|Excel 2007(*.xlsx)|*.xlsx|Excel 2003(*.xls)|*.xls";
                 ofd.Title = "Выберите документ для загрузки данных";
 
-                importTB();               
+                importTB(columnsName);               
             }
-            catch (Exception ex/*System.Runtime.InteropServices.COMException*/)
+            catch (Exception ex)
             {
                 MessageBox.Show("Что-то пошло не так:" + Environment.NewLine +
                     Environment.NewLine + ex.Message);
             }
         }
         //importTable in dgv.ds
-        private void importTB()
+        private void importTB(string columns)
         {
               if (ofd.ShowDialog() == DialogResult.OK)
                 {
                 button3.Enabled = true;
                 ds.Clear();
                 //DataTable tb = new DataTable();
-                //tb.Rows.Clear();
-                //tb.Columns.Clear();
+                tb.Rows.Clear();
+                tb.Columns.Clear();
                 try
                 {
                     toolStripStatusLabel2.Text = "Директория файла: " + ofd.FileName;
@@ -85,7 +86,7 @@ namespace Hospital
                     string sheet1 = (string)schemaTable.Rows[0].ItemArray[2]; //numSheet
 
                     //string select = String.Format(" SELECT [Код ] from [{0}]", sheet1);
-                    string select = String.Format("SELECT [Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП] FROM[{0}]", sheet1);
+                    string select = String.Format("SELECT " + columns + " FROM[{0}]", sheet1);
                     //string select = String.Format("SELECT [Номер истории болезни/ талона амбулаторного пациента / карты вызова СМП] AS [Номер истории болезни] FROM [{0}]", sheet1);
                     // [Номер истории болезни// талона амбулаторного пациента // карты вызова СМП] AS [Номер истории болезни]
                     tabControl1.TabPages[0].Text = sheet1.ToString();
@@ -155,12 +156,13 @@ namespace Hospital
    
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
+            GC.Collect();
             Application.Exit();
         }
         //toolStripMenu
          void openToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            openFile();
+            openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
             toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
         }
         
@@ -175,7 +177,7 @@ namespace Hospital
         // openFile
         private void button4_Click(object sender, EventArgs e)
         {
-            openFile();
+            openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
             toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
         }
         //procedure 
@@ -192,6 +194,7 @@ namespace Hospital
 
         private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            GC.Collect();
             Application.Exit();
         }
 
@@ -199,6 +202,18 @@ namespace Hospital
         {
             aboutTheProgram atp = new aboutTheProgram();
             atp.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
+            toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+        }
+
+        private void штатToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
+            toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
         }
     }    
 }
