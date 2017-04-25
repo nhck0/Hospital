@@ -63,7 +63,7 @@ namespace Hospital
             //ExcelRange2 = ExcelWorkSheet.get_Range(ExcelWorkSheet.Cells[1, 1], ExcelWorkSheet.Cells[3, 3]);
             ExcelRange2.Borders.ColorIndex = 0; 
 
-            for (int i = 1; i < dgv.Columns.Count + 1; i++)
+            for (int i = 1; i < dgv.ColumnCount + 1; i++)
             {
                 ExcelWorkSheet.Cells[6, i] = dgv.Columns[i - 1].HeaderText;
             } 
@@ -72,13 +72,10 @@ namespace Hospital
             {
                 for (int j = 0; j < dgv.ColumnCount; j++)
                 {
-                    ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
-                    //if (dgv.Rows[i].Cells[j].Value.ToString() == "")
-                    //{
-                    //    ExcelApp.Cells[i + 7, j + 1] = "0";
-                    //}
+                        ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
                 }
             }
+
             ExcelApp.Columns.AutoFit();
             ExcelApp.DisplayAlerts = false;
             
@@ -215,9 +212,9 @@ namespace Hospital
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show("Обновите таблицы!" + ex, "Ошибка",
+                MessageBox.Show("Обновите таблицы!" , "Ошибка",
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -300,5 +297,6 @@ namespace Hospital
             aboutTheProgram atp = new aboutTheProgram();
             atp.Show();
         }
+
     }
 }

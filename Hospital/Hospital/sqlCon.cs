@@ -128,9 +128,10 @@ namespace Hospital
         //Добавление таблицы в sql 
         private void addTable()
         {
+            Main main = this.Owner as Main;
             try
             {
-                Main main = this.Owner as Main;
+               
                 if (main != null)
                 {
                     // Establish the database server
@@ -170,9 +171,22 @@ namespace Hospital
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Что-то пошло не так:" +
+                if (main.dataGridView1.Columns[0].Name == "Номер истории болезни")
+                {
+                    MessageBox.Show("Таблица с таким именем уже существует!", 
+                        "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (main.dataGridView1.Columns[0].Name == "Код")
+                {
+                    MessageBox.Show("Штат записывать не нужно!", 
+                        "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Что-то пошло не так:" +
                     Environment.NewLine + Environment.NewLine +
                     ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void button1_Click(object sender, EventArgs e)

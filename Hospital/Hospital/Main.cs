@@ -120,7 +120,7 @@ namespace Hospital
                     string select = String.Format("SELECT " + columns + " FROM[{0}]", sheet1);
                     //string select = String.Format("SELECT [Номер истории болезни/ талона амбулаторного пациента / карты вызова СМП] AS [Номер истории болезни] FROM [{0}]", sheet1);
                     // [Номер истории болезни// талона амбулаторного пациента // карты вызова СМП] AS [Номер истории болезни]
-                    tabControl1.TabPages[0].Text = sheet1.ToString();
+                    tabControl1.TabPages[0].Text = sheet1.ToString()/*Substring(1, sheet1.Length -3)*/;
                     System.Data.OleDb.OleDbDataAdapter ad =
                         new System.Data.OleDb.OleDbDataAdapter(select, con);
                     
@@ -239,22 +239,26 @@ namespace Hospital
         {
             openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
             toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
-
-            //test
-            using (SqlConnection sqlcon = new SqlConnection(GetConnectionString()))
+            if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
             {
-                string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
-                sqlcon.Open();
-                SqlCommand cmd = new SqlCommand(sql, sqlcon);
-                cmd.ExecuteNonQuery();
-                sqlcon.Close();
+                //test
+                using (SqlConnection sqlcon = new SqlConnection(GetConnectionString()))
+                {
+                    string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
+                    sqlcon.Open();
+                    SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                    cmd.ExecuteNonQuery();
+                    sqlcon.Close();
 
-                sqlBulk();
+                    sqlBulk();
 
-                MessageBox.Show("Штат обновлен!", "Информация",
-                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } 
+                    MessageBox.Show("Штат обновлен!", "Информация",
+                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
+        
+           
         // ISPRAVIT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private void штатToolStripMenuItem_Click(object sender, EventArgs e)
         {
