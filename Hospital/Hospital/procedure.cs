@@ -58,7 +58,7 @@ namespace Hospital
 
             ExcelRange2 = ExcelWorkSheet.get_Range("5:" + (dgv.Rows.Count + 5), Type.Missing);
 
-            ExcelRange2 = ExcelWorkSheet.Range[ExcelWorkSheet.Cells[5, 1], ExcelWorkSheet.Cells[(dgv.Rows.Count + 5), dgv.Columns.Count]];
+            ExcelRange2 = ExcelWorkSheet.Range[ExcelWorkSheet.Cells[5, 1], ExcelWorkSheet.Cells[(dgv.Rows.Count + 6), dgv.Columns.Count]];
 
             //ExcelRange2 = ExcelWorkSheet.get_Range(ExcelWorkSheet.Cells[1, 1], ExcelWorkSheet.Cells[3, 3]);
             ExcelRange2.Borders.ColorIndex = 0; 
@@ -72,7 +72,11 @@ namespace Hospital
             {
                 for (int j = 0; j < dgv.ColumnCount; j++)
                 {
-                        ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
+                    if (dgv.Rows[i].Cells[j].Value.ToString() == "")
+                    {
+                        ExcelApp.Cells[i + 7, j + 1] = 0;
+                    }else ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
+
                 }
             }
 
@@ -170,7 +174,7 @@ namespace Hospital
                 DirectoryInfo dirInf = new DirectoryInfo(folderName);
                 if (dataGridView7.Rows.Count > 0)
                 {
-                    MessageBox.Show("После исправления ошибок" + Environment.NewLine + "необходимо обновить таблицы!", "Предупреждение!",
+                    MessageBox.Show("После исправления ошибок" + Environment.NewLine + "необходимо обновить отчеты!", "Предупреждение!",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else

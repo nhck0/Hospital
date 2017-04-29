@@ -122,8 +122,7 @@ namespace Hospital
             catch(Exception)
             {
                 proc.toolStripStatusLabel3.Text = "";
-                MessageBox.Show("Что-то пошло не так " + Environment.NewLine +
-                   Environment.NewLine + "Такой таблицы не существует!", "Ошибка!",
+                MessageBox.Show("Такой таблицы не существует!", "Ошибка!",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);              
             }
         }

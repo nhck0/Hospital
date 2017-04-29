@@ -168,6 +168,7 @@ namespace Hospital
 
                 MessageBox.Show("Таблица успешно добавлена!", "Запись таблицы",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Hide();
             }
             catch (Exception ex)
             {
@@ -178,7 +179,7 @@ namespace Hospital
                 }
                 else if (main.dataGridView1.Columns[0].Name == "Код")
                 {
-                    MessageBox.Show("Штат записывать не нужно!", 
+                    MessageBox.Show("Добавлять штат в базу данных не нужно!", 
                         "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
@@ -192,7 +193,6 @@ namespace Hospital
         private void button1_Click(object sender, EventArgs e)
         {
             addTable();
-            this.Hide();
         }
 
         private void sqlCon_Load(object sender, EventArgs e)
