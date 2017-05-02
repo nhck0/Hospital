@@ -18,19 +18,13 @@ namespace Hospital
         }
         DataSet ds = new DataSet();
         int tab = 0;
-        
-        //sqlConn
-        private static string GetConnectionString()
-        {
-            return "Data Source=NORD\\MSSQLSERVER1; " +
-                " Integrated Security=true;" +
-                "Initial Catalog=hospital;";
-        }
+        pub p = new pub();
+
         //proc form sql
         private void procWithOutParam(string nameProcedure)
         {
             procedure proc = this.Owner as procedure;
-            using (var sqlConn = new SqlConnection(GetConnectionString()))
+            using (var sqlConn = new SqlConnection(p.getConnectionString()))
             {
                 try
                 {
@@ -57,7 +51,7 @@ namespace Hospital
         private void procWithParam(string nameProcedure, string paramValue )
         {
             procedure proc = this.Owner as procedure;
-            using (var sqlConn = new SqlConnection(GetConnectionString()))
+            using (var sqlConn = new SqlConnection(p.getConnectionString()))
             { 
                 try
                 {
@@ -90,7 +84,7 @@ namespace Hospital
                 var nameProcWOP = new string[] { "num001", "num002", "num004" };
                 var nameProcWP = new string[] { "num003", "num005", "Найти ошибки" };
 
-                using (var sqlConn = new SqlConnection(GetConnectionString()))
+                using (var sqlConn = new SqlConnection(p.getConnectionString()))
                     {
                         var sqlCmd = new SqlCommand("assembleAll", sqlConn);
                         sqlCmd.CommandType = CommandType.StoredProcedure;

@@ -96,11 +96,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="pub.cs" />
     <Compile Include="sqlCon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="sqlCon.Designer.cs">
       <DependentUpon>sqlCon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sqlDataBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sqlDataBase.Designer.cs">
+      <DependentUpon>sqlDataBase.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="aboutTheProgram.resx">
       <DependentUpon>aboutTheProgram.cs</DependentUpon>
@@ -125,6 +132,9 @@
     </Compile>
     <EmbeddedResource Include="sqlCon.resx">
       <DependentUpon>sqlCon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sqlDataBase.resx">
+      <DependentUpon>sqlDataBase.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="hospitalDataSet.xsc">
       <DependentUpon>hospitalDataSet.xsd</DependentUpon>

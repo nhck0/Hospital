@@ -32,5 +32,29 @@ namespace Hospital.Properties {
                 return ((string)(this["hospitalConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string sqlServerName {
+            get {
+                return ((string)(this["sqlServerName"]));
+            }
+            set {
+                this["sqlServerName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string sqlDataBaseName {
+            get {
+                return ((string)(this["sqlDataBaseName"]));
+            }
+            set {
+                this["sqlDataBaseName"] = value;
+            }
+        }
     }
 }

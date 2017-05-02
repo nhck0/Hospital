@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExcelObj = Microsoft.Office.Interop.Excel;
 using System.Reflection;
-
 using System.Data.SqlClient;
 using System.Data.OleDb;
 
@@ -22,57 +21,22 @@ namespace Hospital
         {
             InitializeComponent();
         }
-        
+
         OpenFileDialog ofd = new OpenFileDialog();
         DataTable tb = new DataTable();
         DataTable tb2 = new DataTable();
         public DataSet ds = new DataSet();
-      
+        pub p = new pub();
+
         private void Main_Load(object sender, EventArgs e)
         {
+            sqlDataBase db = new sqlDataBase();
+            db.textBox1.Text = Properties.Settings.Default.sqlServerName;
+            db.textBox2.Text = Properties.Settings.Default.sqlDataBaseName;
             button2.Enabled = false;
             button3.Enabled = false;
         }
-        //connStringSql
-        public static string GetConnectionString()
-        {
-            return "Data Source=NORD\\MSSQLSERVER1; " +
-                " Integrated Security=true;" +
-                "Initial Catalog=hospital;";
-        }
-
-        //sqlbulk ISPRAVIT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        private void sqlBulk()
-        {
-
-            string connectionString = GetConnectionString();
-            // Open a connection to the hospital database.
-            using (SqlConnection connection =
-                       new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Create the SqlBulkCopy object. 
-                // Note that the column positions in the source DataTable 
-                // match the column positions in the destination table so 
-                // there is no need to map columns. 
-                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
-                {
-                    try
-                    {
-                        bulkCopy.DestinationTableName = "RepStaf196";
-
-                        bulkCopy.WriteToServer(ds.Tables[0]);
-                        connection.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-        }
-        //openFileDialog
+        
         private void openFile(string columnsName)
         {
             try
@@ -242,7 +206,7 @@ namespace Hospital
             if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
             {
                 //test
-                using (SqlConnection sqlcon = new SqlConnection(GetConnectionString()))
+                using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
                 {
                     string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
                     sqlcon.Open();
@@ -250,7 +214,7 @@ namespace Hospital
                     cmd.ExecuteNonQuery();
                     sqlcon.Close();
 
-                    sqlBulk();
+                    p.sqlBulk("RepStaf196",ds.Tables[0]);
 
                     MessageBox.Show("Штат обновлен!", "Информация",
                              MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -265,7 +229,7 @@ namespace Hospital
             openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
             toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
 
-            using (SqlConnection sqlcon = new SqlConnection(GetConnectionString()))
+            using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
             {
                 string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
                 sqlcon.Open();
@@ -273,11 +237,17 @@ namespace Hospital
                 cmd.ExecuteNonQuery();
                 sqlcon.Close();
 
-                sqlBulk();
+                p.sqlBulk("RepStaf196", ds.Tables[0]);
 
                 MessageBox.Show("Штат обновлен!", "Информация",
                          MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void подключениеКБазеДанныхToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sqlDataBase db = new sqlDataBase();
+            db.Show();
         }
     }    
 }

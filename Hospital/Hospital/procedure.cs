@@ -22,6 +22,7 @@ namespace Hospital
         }
         DataSet ds = new DataSet();
         string folderName;
+        pub p = new pub();
 
         //sqlConn
         private static string GetConnectionString()
@@ -109,32 +110,32 @@ namespace Hospital
             }
         }
         //sql bulkcopy
-        private void sqlBulk()
-        {
-            string connectionString = GetConnectionString();
+        //private void sqlBulk()
+        //{
+        //    string connectionString = GetConnectionString();
 
-            using (SqlConnection connection =
-                       new SqlConnection(connectionString))
-            {
-                connection.Open();
+        //    using (SqlConnection connection =
+        //               new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
 
-                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
-                {
-                    try
-                    {
-                        bulkCopy.DestinationTableName = toolStripStatusLabel3.Text;
+        //        using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+        //        {
+        //            try
+        //            {
+        //                bulkCopy.DestinationTableName = toolStripStatusLabel3.Text;
 
-                        bulkCopy.WriteToServer(ds.Tables[0]);
-                        connection.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-            ds.Tables.RemoveAt(0);
-        }
+        //                bulkCopy.WriteToServer(ds.Tables[0]);
+        //                connection.Close();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show(ex.Message);
+        //            }
+        //        }
+        //    }
+        //    ds.Tables.RemoveAt(0);
+        //}
         private void saveChange()
         {
             try
@@ -149,7 +150,8 @@ namespace Hospital
                     cmd.ExecuteNonQuery();
                     sqlcon.Close();
 
-                    sqlBulk();
+                    p.sqlBulk(toolStripStatusLabel3.Text,ds.Tables[0]);
+                    ds.Tables.RemoveAt(0);
 
                     button2.Enabled = false;
 

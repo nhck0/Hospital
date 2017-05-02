@@ -21,48 +21,49 @@ namespace Hospital
             InitializeComponent();
 
         }
+        pub p = new pub();
 
-        private static string GetConnectionString()
-        {
-            return "Data Source=NORD\\MSSQLSERVER1; " +
-                " Integrated Security=true;" +
-                "Initial Catalog=hospital;";
-        }
+        //private static string GetConnectionString()
+        //{
+        //    return "Data Source=NORD\\MSSQLSERVER1; " +
+        //        " Integrated Security=true;" +
+        //        "Initial Catalog=hospital;";
+        //}
 
         //sql bulk
-        private void bulkCopy()
-        {
-            Main main = this.Owner as Main;
-            if (main != null)
-            {
-                string connectionString = GetConnectionString();
-                // Open a connection to the hospital database.
-                using (SqlConnection connection =
-                           new SqlConnection(connectionString))
-                {
-                    connection.Open();
+        //private void bulkCopy()
+        //{
+        //    Main main = this.Owner as Main;
+        //    if (main != null)
+        //    {
+        //        string connectionString = GetConnectionString();
+        //        // Open a connection to the hospital database.
+        //        using (SqlConnection connection =
+        //                   new SqlConnection(connectionString))
+        //        {
+        //            connection.Open();
 
-                    // Create the SqlBulkCopy object. 
-                    // Note that the column positions in the source DataTable 
-                    // match the column positions in the destination table so 
-                    // there is no need to map columns. 
-                    using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
-                    {
-                        try
-                        {
-                            bulkCopy.DestinationTableName = dateTimePicker1.Text;
+        //            // Create the SqlBulkCopy object. 
+        //            // Note that the column positions in the source DataTable 
+        //            // match the column positions in the destination table so 
+        //            // there is no need to map columns. 
+        //            using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+        //            {
+        //                try
+        //                {
+        //                    bulkCopy.DestinationTableName = dateTimePicker1.Text;
                         
-                            bulkCopy.WriteToServer(main.ds.Tables[0]);
-                            connection.Close();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }                   
-                }
-            }
-        }
+        //                    bulkCopy.WriteToServer(main.ds.Tables[0]);
+        //                    connection.Close();
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    MessageBox.Show(ex.Message);
+        //                }
+        //            }                   
+        //        }
+        //    }
+        //}
         // Типы данных для sql 
         public DataType GetDataType(string dataType)
         {
@@ -130,12 +131,11 @@ namespace Hospital
         {
             Main main = this.Owner as Main;
             try
-            {
-               
+            { 
                 if (main != null)
                 {
                     // Establish the database server
-                    string connectionString = GetConnectionString();
+                    string connectionString = p.getConnectionString();
                     SqlConnection connection =
                        new SqlConnection(connectionString);
                     Server server =
@@ -164,7 +164,7 @@ namespace Hospital
 
                     newTable.Create();
                 }
-                bulkCopy();
+                p.sqlBulk(dateTimePicker1.Text,main.ds.Tables[0]);
 
                 MessageBox.Show("Таблица успешно добавлена!", "Запись таблицы",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
