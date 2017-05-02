@@ -18,12 +18,6 @@ namespace Hospital
             InitializeComponent();
         }
 
-        private void sqlDataBase_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Properties.Settings.Default.sqlServerName = textBox1.Text;
-            Properties.Settings.Default.sqlDataBaseName = textBox2.Text;
-        }
-
         private bool checkConn()
         {        
             try
@@ -35,8 +29,9 @@ namespace Hospital
                 {
                     sqlConn.Open();
                     MessageBox.Show("Подключение установлено!", "Подключение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return (sqlConn.State == ConnectionState.Open);
-                    
+                    Properties.Settings.Default.sqlServerName = textBox1.Text;
+                    Properties.Settings.Default.sqlDataBaseName = textBox2.Text;
+                    return (sqlConn.State == ConnectionState.Open);                
                 }
             }
             catch (SqlException)

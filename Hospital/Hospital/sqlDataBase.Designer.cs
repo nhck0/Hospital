@@ -92,7 +92,6 @@
             this.Name = "sqlDataBase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Подключение к БД";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.sqlDataBase_FormClosed);
             this.Load += new System.EventHandler(this.sqlDataBase_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

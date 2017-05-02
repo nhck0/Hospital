@@ -15,24 +15,17 @@ namespace Hospital
             return "Data Source=" + Properties.Settings.Default.sqlServerName + ";" +
                 " Integrated Security=true;" +
                 "Initial Catalog=" + Properties.Settings.Default.sqlDataBaseName + ";";
-
-
         }
 
         public void sqlBulk(string nameTab, System.Data.DataTable numTab)
         {
-
             string connectionString = getConnectionString();
-            // Open a connection to the hospital database.
+            // Open a connection to database.
             using (SqlConnection connection =
                        new SqlConnection(connectionString))
             {
                 connection.Open();
-
-                // Create the SqlBulkCopy object. 
-                // Note that the column positions in the source DataTable 
-                // match the column positions in the destination table so 
-                // there is no need to map columns. 
+ 
                 using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
                 {
                         bulkCopy.DestinationTableName = nameTab;
