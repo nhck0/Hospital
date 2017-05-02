@@ -34,7 +34,7 @@ namespace Hospital
                 "Initial Catalog=" + textBox2.Text + ";"))
                 {
                     sqlConn.Open();
-                    MessageBox.Show("Подключение установленно!", "Подключение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Подключение установлено!", "Подключение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return (sqlConn.State == ConnectionState.Open);
                     
                 }
