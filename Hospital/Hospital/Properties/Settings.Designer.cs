@@ -23,16 +23,6 @@ namespace Hospital.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NORD\\MSSQLSERVER1;Initial Catalog=hospital;Integrated Security=True")]
-        public string hospitalConnectionString {
-            get {
-                return ((string)(this["hospitalConnectionString"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
@@ -54,6 +44,18 @@ namespace Hospital.Properties {
             }
             set {
                 this["sqlDataBaseName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NORD\\MSSQLSERVER1;Initial Catalog=hospital;Integrated Security=True")]
+        public string hospitalConnectionString {
+            get {
+                return ((string)(this["hospitalConnectionString"]));
+            }
+            set {
+                this["hospitalConnectionString"] = value;
             }
         }
     }

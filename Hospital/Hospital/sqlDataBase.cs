@@ -24,21 +24,44 @@ namespace Hospital
             Properties.Settings.Default.sqlDataBaseName = textBox2.Text;
         }
 
-        private void checkConn()
-        {
-            pub b = new pub();
+        private bool checkConn()
+        {        
             try
             {
-                b.getConnectionString();
+                using (SqlConnection sqlConn =
+                    new SqlConnection("Data Source=" + textBox1.Text + ";" +
+                " Integrated Security=true;" +
+                "Initial Catalog=" + textBox2.Text + ";"))
+                {
+                    sqlConn.Open();
+                    MessageBox.Show("Подключение установленно!", "Подключение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return (sqlConn.State == ConnectionState.Open);
+                    
+                }
             }
-            catch(Exception ex)
+            catch (SqlException)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Нет соединения с базой!", "Подключение...",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Нет соединения с базой!", "Подключение...",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
             checkConn();
+        }
+
+        private void sqlDataBase_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = Properties.Settings.Default.sqlServerName;
+            textBox2.Text = Properties.Settings.Default.sqlDataBaseName;
         }
     }
 }

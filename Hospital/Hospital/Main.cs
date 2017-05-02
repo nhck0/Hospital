@@ -31,8 +31,6 @@ namespace Hospital
         private void Main_Load(object sender, EventArgs e)
         {
             sqlDataBase db = new sqlDataBase();
-            db.textBox1.Text = Properties.Settings.Default.sqlServerName;
-            db.textBox2.Text = Properties.Settings.Default.sqlDataBaseName;
             button2.Enabled = false;
             button3.Enabled = false;
         }
@@ -152,6 +150,7 @@ namespace Hospital
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             GC.Collect();
+            Properties.Settings.Default.Save();
             Application.Exit();
         }
         //toolStripMenu

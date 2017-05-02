@@ -14,7 +14,9 @@ namespace Hospital
         {
             return "Data Source=" + Properties.Settings.Default.sqlServerName + ";" +
                 " Integrated Security=true;" +
-                "Initial Catalog=hospital" + Properties.Settings.Default.sqlDataBaseName + ";";
+                "Initial Catalog=" + Properties.Settings.Default.sqlDataBaseName + ";";
+
+
         }
 
         public void sqlBulk(string nameTab, System.Data.DataTable numTab)
