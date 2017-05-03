@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Hospital")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("medReestr")]
+[assembly: AssemblyDescription("Программа для обработки данных медицинской помощи")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hewlett-Packard")]
-[assembly: AssemblyProduct("Hospital")]
-[assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2017")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("medReestr")]
+[assembly: AssemblyCopyright("Козьминых Владимир Сергеевич")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
