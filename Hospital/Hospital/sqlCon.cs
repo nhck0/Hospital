@@ -148,14 +148,14 @@ namespace Hospital
                 }
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void addToDB_Click(object sender, EventArgs e)
         {
             addTable();
         }
 
         private void sqlCon_Load(object sender, EventArgs e)
         {
-            this.AcceptButton = button1;
+            this.AcceptButton = addToDB;
             dateTimePicker1.CustomFormat = "MMMMyyyy";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
         }

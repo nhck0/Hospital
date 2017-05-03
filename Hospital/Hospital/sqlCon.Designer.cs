@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(sqlCon));
-            this.button1 = new System.Windows.Forms.Button();
+            this.addToDB = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // addToDB
             // 
-            this.button1.Location = new System.Drawing.Point(12, 54);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Записать";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.addToDB.Location = new System.Drawing.Point(12, 54);
+            this.addToDB.Name = "addToDB";
+            this.addToDB.Size = new System.Drawing.Size(130, 23);
+            this.addToDB.TabIndex = 0;
+            this.addToDB.Text = "Записать";
+            this.addToDB.UseVisualStyleBackColor = true;
+            this.addToDB.Click += new System.EventHandler(this.addToDB_Click);
             // 
             // dateTimePicker1
             // 
@@ -67,7 +67,7 @@
             this.ClientSize = new System.Drawing.Size(154, 87);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.addToDB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -83,7 +83,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addToDB;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
     }

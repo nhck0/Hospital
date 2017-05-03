@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(sqlDataBase));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nameServerTB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.nameDataBaseTB = new System.Windows.Forms.TextBox();
+            this.checkConnection = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -45,12 +45,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Имя сервера:";
             // 
-            // textBox1
+            // nameServerTB
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(157, 20);
-            this.textBox1.TabIndex = 1;
+            this.nameServerTB.Location = new System.Drawing.Point(15, 25);
+            this.nameServerTB.Name = "nameServerTB";
+            this.nameServerTB.Size = new System.Drawing.Size(157, 20);
+            this.nameServerTB.TabIndex = 1;
             // 
             // label2
             // 
@@ -61,32 +61,32 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Имя базы данных:";
             // 
-            // textBox2
+            // nameDataBaseTB
             // 
-            this.textBox2.Location = new System.Drawing.Point(15, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(157, 20);
-            this.textBox2.TabIndex = 3;
+            this.nameDataBaseTB.Location = new System.Drawing.Point(15, 64);
+            this.nameDataBaseTB.Name = "nameDataBaseTB";
+            this.nameDataBaseTB.Size = new System.Drawing.Size(157, 20);
+            this.nameDataBaseTB.TabIndex = 3;
             // 
-            // button1
+            // checkConnection
             // 
-            this.button1.Location = new System.Drawing.Point(47, 90);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 36);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Проверить подключение";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.checkConnection.Location = new System.Drawing.Point(47, 90);
+            this.checkConnection.Name = "checkConnection";
+            this.checkConnection.Size = new System.Drawing.Size(85, 36);
+            this.checkConnection.TabIndex = 4;
+            this.checkConnection.Text = "Проверить подключение";
+            this.checkConnection.UseVisualStyleBackColor = true;
+            this.checkConnection.Click += new System.EventHandler(this.checkConnection_Click);
             // 
             // sqlDataBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(184, 133);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.checkConnection);
+            this.Controls.Add(this.nameDataBaseTB);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.nameServerTB);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "sqlDataBase";
@@ -102,8 +102,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.TextBox nameServerTB;
+        public System.Windows.Forms.TextBox nameDataBaseTB;
+        private System.Windows.Forms.Button checkConnection;
     }
 }

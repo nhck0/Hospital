@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(procedure));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.saveChanges = new System.Windows.Forms.Button();
+            this.saveReports = new System.Windows.Forms.Button();
+            this.updateReports = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoSaveDirTSM = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoTSM = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoTableTSM = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoErrorTSM = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -52,16 +52,17 @@
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.dataGridView7 = new System.Windows.Forms.DataGridView();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.главноеОкноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьОтчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainWinTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveReportsTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDirTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutTheProgramTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.настройкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveDirTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.директорияСохраненияОтчетовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -83,88 +84,88 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.saveChanges);
+            this.panel1.Controls.Add(this.saveReports);
+            this.panel1.Controls.Add(this.updateReports);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(81, 234);
             this.panel1.TabIndex = 0;
             // 
-            // button2
+            // saveChanges
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Location = new System.Drawing.Point(0, 72);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 35);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Сохранить изменения";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.saveChanges.Dock = System.Windows.Forms.DockStyle.Top;
+            this.saveChanges.Location = new System.Drawing.Point(0, 72);
+            this.saveChanges.Name = "saveChanges";
+            this.saveChanges.Size = new System.Drawing.Size(81, 35);
+            this.saveChanges.TabIndex = 3;
+            this.saveChanges.Text = "Сохранить изменения";
+            this.saveChanges.UseVisualStyleBackColor = true;
+            this.saveChanges.Click += new System.EventHandler(this.saveChanges_Click);
             // 
-            // button3
+            // saveReports
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(0, 37);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 35);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Сохранить отчеты";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.saveReports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.saveReports.Location = new System.Drawing.Point(0, 37);
+            this.saveReports.Name = "saveReports";
+            this.saveReports.Size = new System.Drawing.Size(81, 35);
+            this.saveReports.TabIndex = 2;
+            this.saveReports.Text = "Сохранить отчеты";
+            this.saveReports.UseVisualStyleBackColor = true;
+            this.saveReports.Click += new System.EventHandler(this.saveReports_Click);
             // 
-            // button1
+            // updateReports
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 37);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Обновить отчеты";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.updateReports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.updateReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updateReports.Location = new System.Drawing.Point(0, 0);
+            this.updateReports.Name = "updateReports";
+            this.updateReports.Size = new System.Drawing.Size(81, 37);
+            this.updateReports.TabIndex = 0;
+            this.updateReports.Text = "Обновить отчеты";
+            this.updateReports.UseVisualStyleBackColor = true;
+            this.updateReports.Click += new System.EventHandler(this.updateReports_Click);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel4,
-            this.toolStripStatusLabel2,
-            this.toolStripStatusLabel3,
-            this.toolStripStatusLabel1});
+            this.infoSaveDirTSM,
+            this.infoTSM,
+            this.infoTableTSM,
+            this.infoErrorTSM});
             this.statusStrip1.Location = new System.Drawing.Point(0, 258);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(902, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel4
+            // infoSaveDirTSM
             // 
-            this.toolStripStatusLabel4.Image = global::Hospital.Properties.Resources.save;
-            this.toolStripStatusLabel4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(16, 17);
+            this.infoSaveDirTSM.Image = global::Hospital.Properties.Resources.save;
+            this.infoSaveDirTSM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.infoSaveDirTSM.Name = "infoSaveDirTSM";
+            this.infoSaveDirTSM.Size = new System.Drawing.Size(16, 17);
             // 
-            // toolStripStatusLabel2
+            // infoTSM
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(435, 17);
-            this.toolStripStatusLabel2.Spring = true;
-            this.toolStripStatusLabel2.Tag = "";
-            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoTSM.Name = "infoTSM";
+            this.infoTSM.Size = new System.Drawing.Size(420, 17);
+            this.infoTSM.Spring = true;
+            this.infoTSM.Tag = "";
+            this.infoTSM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // toolStripStatusLabel3
+            // infoTableTSM
             // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(435, 17);
-            this.toolStripStatusLabel3.Spring = true;
-            this.toolStripStatusLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.infoTableTSM.Name = "infoTableTSM";
+            this.infoTableTSM.Size = new System.Drawing.Size(420, 17);
+            this.infoTableTSM.Spring = true;
+            this.infoTableTSM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // toolStripStatusLabel1
+            // infoErrorTSM
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.infoErrorTSM.Name = "infoErrorTSM";
+            this.infoErrorTSM.Size = new System.Drawing.Size(0, 17);
             // 
             // tabControl1
             // 
@@ -306,76 +307,84 @@
             this.dataGridView7.Size = new System.Drawing.Size(801, 199);
             this.dataGridView7.TabIndex = 0;
             // 
-            // файлToolStripMenuItem
+            // actionTSM
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.главноеОкноToolStripMenuItem,
-            this.сохранитьОтчетыToolStripMenuItem,
+            this.actionTSM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainWinTSM,
+            this.saveReportsTSM,
+            this.openDirTSM,
             this.toolStripSeparator1,
-            this.оПрограммеToolStripMenuItem,
-            this.выходToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.aboutTheProgramTSM,
+            this.exitTSM});
+            this.actionTSM.Name = "actionTSM";
+            this.actionTSM.Size = new System.Drawing.Size(70, 20);
+            this.actionTSM.Text = "Действие";
             // 
-            // главноеОкноToolStripMenuItem
+            // mainWinTSM
             // 
-            this.главноеОкноToolStripMenuItem.Name = "главноеОкноToolStripMenuItem";
-            this.главноеОкноToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.главноеОкноToolStripMenuItem.Text = "Главное окно";
-            this.главноеОкноToolStripMenuItem.Click += new System.EventHandler(this.главноеОкноToolStripMenuItem_Click);
+            this.mainWinTSM.Name = "mainWinTSM";
+            this.mainWinTSM.Size = new System.Drawing.Size(256, 22);
+            this.mainWinTSM.Text = "Главное окно";
+            this.mainWinTSM.Click += new System.EventHandler(this.mainWinTSM_Click);
             // 
-            // сохранитьОтчетыToolStripMenuItem
+            // saveReportsTSM
             // 
-            this.сохранитьОтчетыToolStripMenuItem.Name = "сохранитьОтчетыToolStripMenuItem";
-            this.сохранитьОтчетыToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.сохранитьОтчетыToolStripMenuItem.Text = "Сохранить отчеты";
-            this.сохранитьОтчетыToolStripMenuItem.Click += new System.EventHandler(this.сохранитьОтчетыToolStripMenuItem_Click);
+            this.saveReportsTSM.Name = "saveReportsTSM";
+            this.saveReportsTSM.Size = new System.Drawing.Size(256, 22);
+            this.saveReportsTSM.Text = "Сохранить отчеты";
+            this.saveReportsTSM.Click += new System.EventHandler(this.saveReportsTSM_Click);
+            // 
+            // openDirTSM
+            // 
+            this.openDirTSM.Name = "openDirTSM";
+            this.openDirTSM.Size = new System.Drawing.Size(256, 22);
+            this.openDirTSM.Text = "Открыть директорию с отчетами";
+            this.openDirTSM.Click += new System.EventHandler(this.openDirTSM_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(253, 6);
             // 
-            // оПрограммеToolStripMenuItem
+            // aboutTheProgramTSM
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            this.aboutTheProgramTSM.Name = "aboutTheProgramTSM";
+            this.aboutTheProgramTSM.Size = new System.Drawing.Size(256, 22);
+            this.aboutTheProgramTSM.Text = "О программе";
+            this.aboutTheProgramTSM.Click += new System.EventHandler(this.aboutTheProgramTSM_Click);
             // 
-            // выходToolStripMenuItem
+            // exitTSM
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
-            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            this.exitTSM.Name = "exitTSM";
+            this.exitTSM.Size = new System.Drawing.Size(256, 22);
+            this.exitTSM.Text = "Выход";
+            this.exitTSM.Click += new System.EventHandler(this.exitTSM_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.настройкаToolStripMenuItem});
+            this.actionTSM,
+            this.settingsTSM});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(902, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // настройкаToolStripMenuItem
+            // settingsTSM
             // 
-            this.настройкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.директорияСохраненияОтчетовToolStripMenuItem});
-            this.настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
-            this.настройкаToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.настройкаToolStripMenuItem.Text = "Настройка";
+            this.settingsTSM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveDirTSM});
+            this.settingsTSM.Name = "settingsTSM";
+            this.settingsTSM.Size = new System.Drawing.Size(79, 20);
+            this.settingsTSM.Text = "Настройки";
             // 
-            // директорияСохраненияОтчетовToolStripMenuItem
+            // saveDirTSM
             // 
-            this.директорияСохраненияОтчетовToolStripMenuItem.Name = "директорияСохраненияОтчетовToolStripMenuItem";
-            this.директорияСохраненияОтчетовToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.директорияСохраненияОтчетовToolStripMenuItem.Text = "Директория сохранения отчетов";
-            this.директорияСохраненияОтчетовToolStripMenuItem.Click += new System.EventHandler(this.директорияСохраненияОтчетовToolStripMenuItem_Click);
+            this.saveDirTSM.Name = "saveDirTSM";
+            this.saveDirTSM.Size = new System.Drawing.Size(253, 22);
+            this.saveDirTSM.Text = "Директория сохранения отчетов";
+            this.saveDirTSM.Click += new System.EventHandler(this.saveDirTSM_Click);
             // 
             // procedure
             // 
@@ -423,12 +432,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button updateReports;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button saveReports;
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.DataGridView dataGridView2;
         public System.Windows.Forms.DataGridView dataGridView4;
@@ -436,21 +445,22 @@
         public System.Windows.Forms.DataGridView dataGridView6;
         public System.Windows.Forms.DataGridView dataGridView7;
         public System.Windows.Forms.DataGridView dataGridView3;
-        public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        public System.Windows.Forms.ToolStripStatusLabel infoErrorTSM;
+        public System.Windows.Forms.ToolStripStatusLabel infoTSM;
+        public System.Windows.Forms.ToolStripStatusLabel infoTableTSM;
         public System.Windows.Forms.BindingSource bindingSource1;
-        public System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem главноеОкноToolStripMenuItem;
+        public System.Windows.Forms.Button saveChanges;
+        private System.Windows.Forms.ToolStripMenuItem actionTSM;
+        private System.Windows.Forms.ToolStripMenuItem mainWinTSM;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьОтчетыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitTSM;
+        private System.Windows.Forms.ToolStripMenuItem saveReportsTSM;
         public System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
-        private System.Windows.Forms.ToolStripMenuItem настройкаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem директорияСохраненияОтчетовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutTheProgramTSM;
+        private System.Windows.Forms.ToolStripStatusLabel infoSaveDirTSM;
+        private System.Windows.Forms.ToolStripMenuItem settingsTSM;
+        private System.Windows.Forms.ToolStripMenuItem saveDirTSM;
+        private System.Windows.Forms.ToolStripMenuItem openDirTSM;
     }
 }

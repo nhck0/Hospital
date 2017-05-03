@@ -30,11 +30,103 @@ namespace Hospital
 
         private void Main_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabel3.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
-            button2.Enabled = false;
-            button3.Enabled = false;
+            infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
+            gluingSheets.Enabled = false;
+            addDataBase.Enabled = false;
         }
-        
+
+        //block button 
+        private void openReestr_Click(object sender, EventArgs e)
+        {
+            openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
+            infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+        }
+
+        private void addDataBase_Click(object sender, EventArgs e)
+        {
+            sqlCon f = new sqlCon();
+            f.Owner = this;
+            f.ShowDialog();
+        }
+
+        private void addStaff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
+                infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+                if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
+                {
+                    using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
+                    {
+                        string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
+                        sqlcon.Open();
+                        SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                        cmd.ExecuteNonQuery();
+                        sqlcon.Close();
+
+                        p.sqlBulk("RepStaf196", ds.Tables[0]);
+
+                        MessageBox.Show("Штат обновлен!", "Информация",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("В используемой базе данных" + Environment.NewLine +
+                    "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!",
+                    "Ошибка обновления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void reports_Click(object sender, EventArgs e)
+        {
+            procedure proc = new procedure();
+            proc.ShowDialog();
+        }
+
+        //block TSM 
+        private void reestrTSM_Click(object sender, EventArgs e)
+        {
+            openReestr_Click(sender, e);
+        }
+
+        private void staffTSM_Click(object sender, EventArgs e)
+        {
+            addStaff_Click(sender,e);            
+        }
+
+        private void reportsTSM_Click(object sender, EventArgs e)
+        {
+            reports_Click(sender, e);
+        }
+
+        private void aboutTheProgramTSM_Click(object sender, EventArgs e)
+        {
+            aboutTheProgram atp = new aboutTheProgram();
+            atp.ShowDialog();
+        }
+
+        private void exitTSM_Click(object sender, EventArgs e)
+        {
+            Main_FormClosed(sender, (e as FormClosedEventArgs));
+        }
+
+        private void connToTheDBTSM_Click(object sender, EventArgs e)
+        {
+            sqlDataBase db = new sqlDataBase();
+            db.Owner = this;
+            db.ShowDialog();
+        }
+
+        private void saveDirTSM_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            Properties.Settings.Default.saveDir = folderBrowserDialog1.SelectedPath;
+        }
+
+        // block methods 
         private void openFile(string columnsName)
         {
             try
@@ -43,7 +135,7 @@ namespace Hospital
                 ofd.Filter = "All files(*.*)|*.*|Excel 2007(*.xlsx)|*.xlsx|Excel 2003(*.xls)|*.xls";
                 ofd.Title = "Выберите документ для загрузки данных";
 
-                importTB(columnsName);               
+                importTB(columnsName);
             }
             catch (Exception ex)
             {
@@ -51,21 +143,21 @@ namespace Hospital
                     Environment.NewLine + ex.Message);
             }
         }
-        //importTable in dgv.ds
+
         private void importTB(string columns)
         {
-              if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                button3.Enabled = true;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                addDataBase.Enabled = true;
                 ds.Clear();
                 //DataTable tb = new DataTable();
                 tb.Rows.Clear();
                 tb.Columns.Clear();
                 try
                 {
-                    toolStripStatusLabel2.Text = "Директория файла: " + ofd.FileName;
-                    toolStripStatusLabel2.Visible = true;
-                    toolStripStatusLabel3.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                    infoFolderTSM.Text = "Директория файла: " + ofd.FileName;
+                    infoFolderTSM.Visible = true;
+                    infoDBTSM.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
                     String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
                                 ofd.FileName +
@@ -87,12 +179,13 @@ namespace Hospital
                     tabControl1.TabPages[0].Text = sheet1.ToString()/*Substring(1, sheet1.Length -3)*/;
                     System.Data.OleDb.OleDbDataAdapter ad =
                         new System.Data.OleDb.OleDbDataAdapter(select, con);
-                    
+
                     ad.Fill(ds);
                     tb = ds.Tables[0];
                     con.Close();
                     dataGridView1.DataSource = tb;
-                   
+
+                    // Для скливания листов
                     //if (schemaTable.Rows.Count == 2)
                     //{
                     //    button2.Enabled = true;
@@ -111,21 +204,29 @@ namespace Hospital
                     //}
                     con.Close();
                 }
-                catch(Exception)
+                catch (Exception)
                 {
-                    button3.Enabled = false;
+                    addDataBase.Enabled = false;
                     MessageBox.Show("Содержимое файла не соответствует требуему формату", "Ошибка!",
-                        MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
-                {
-                    MessageBox.Show("Вы не выбрали файл для открытия",
-                        "Загрузка данных...", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+            {
+                MessageBox.Show("Вы не выбрали файл для открытия",
+                    "Загрузка данных...", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-        // gluing
-        private void button2_Click(object sender, EventArgs e)
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            GC.Collect();
+            Properties.Settings.Default.Save();
+            Application.Exit();
+        }
+
+        // visible - false
+        private void gluingSheets_Click(object sender, EventArgs e)
         {
             foreach (DataRow row in tb2.Rows)
             {
@@ -148,123 +249,7 @@ namespace Hospital
             //        }
             //}
         }
-   
-        private void Main_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            GC.Collect();
-            Properties.Settings.Default.Save();
-            Application.Exit();
-        }
-        //toolStripMenu
-         void openToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
-            toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
-        }
-        
-        //import to sql
-        private void button3_Click(object sender, EventArgs e)
-        {
-            sqlCon f = new sqlCon();
-            f.Owner = this;
-            f.ShowDialog();
-        }
-
-        // openFile
-        private void button4_Click(object sender, EventArgs e)
-        {
-            openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
-            toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
-        }
-        //procedure 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            procedure proc = new procedure();
-            proc.ShowDialog();
-        }
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            procedure proc = new procedure();
-            proc.ShowDialog();
-        }
-
-        private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            GC.Collect();
-            Application.Exit();
-        }
-
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            aboutTheProgram atp = new aboutTheProgram();
-            atp.Show();
-        }
-
-        // SHTAT
-        private void button5_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
-                toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
-                if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
-                {
-                    using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
-                    {
-                        string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
-                        sqlcon.Open();
-                        SqlCommand cmd = new SqlCommand(sql, sqlcon);
-                        cmd.ExecuteNonQuery();
-                        sqlcon.Close();
-
-                        p.sqlBulk("RepStaf196", ds.Tables[0]);
-
-                        MessageBox.Show("Штат обновлен!", "Информация",
-                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("В используемой базе данных" + Environment.NewLine + 
-                    "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!",
-                    "Ошибка обновления!",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-        }
-        
-        private void штатToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
-            toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
-
-            using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
-            {
-                string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
-                sqlcon.Open();
-                SqlCommand cmd = new SqlCommand(sql, sqlcon);
-                cmd.ExecuteNonQuery();
-                sqlcon.Close();
-
-                p.sqlBulk("RepStaf196", ds.Tables[0]);
-
-                MessageBox.Show("Штат обновлен!", "Информация",
-                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void подключениеКБазеДанныхToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            sqlDataBase db = new sqlDataBase();
-            db.Owner = this;
-            db.ShowDialog();
-        }
-
-        private void директорияСохраненияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            folderBrowserDialog1.ShowDialog();
-            Properties.Settings.Default.saveDir = folderBrowserDialog1.SelectedPath;
-        }
-    }    
+    }
 }
 
 

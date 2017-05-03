@@ -24,15 +24,15 @@ namespace Hospital
             try
             {
                 using (SqlConnection sqlConn =
-                    new SqlConnection("Data Source=" + textBox1.Text + ";" +
+                    new SqlConnection("Data Source=" + nameServerTB.Text + ";" +
                 " Integrated Security=true;" +
-                "Initial Catalog=" + textBox2.Text + ";"))
+                "Initial Catalog=" + nameDataBaseTB.Text + ";"))
                 {
                     sqlConn.Open();
                     MessageBox.Show("Подключение установлено!", "Подключение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Properties.Settings.Default.sqlServerName = textBox1.Text;
-                    Properties.Settings.Default.sqlDataBaseName = textBox2.Text;
-                    main.toolStripStatusLabel3.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
+                    Properties.Settings.Default.sqlServerName = nameServerTB.Text;
+                    Properties.Settings.Default.sqlDataBaseName = nameDataBaseTB.Text;
+                    main.infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
                     return (sqlConn.State == ConnectionState.Open);                
                 }
             }
@@ -50,16 +50,16 @@ namespace Hospital
                 return false;
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void checkConnection_Click(object sender, EventArgs e)
         {
             checkConn();
         }
 
         private void sqlDataBase_Load(object sender, EventArgs e)
         {
-            AcceptButton = button1;
-            textBox1.Text = Properties.Settings.Default.sqlServerName;
-            textBox2.Text = Properties.Settings.Default.sqlDataBaseName;
+            AcceptButton = checkConnection;
+            nameServerTB.Text = Properties.Settings.Default.sqlServerName;
+            nameDataBaseTB.Text = Properties.Settings.Default.sqlDataBaseName;
         }
     }
 }

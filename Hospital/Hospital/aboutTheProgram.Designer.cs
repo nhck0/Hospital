@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(aboutTheProgram));
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.close = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -43,22 +43,22 @@
             this.label3.Text = "medReestr\r\nПрограмма для обработки данных медицинской помощи\r\n\r\nСоздано: Козьмины" +
     "х Владимир Сегреевич, 2017.\r\n\r\nПочта: atobarlv@yandex.ru\r\n\r\n\r\n";
             // 
-            // button1
+            // close
             // 
-            this.button1.Location = new System.Drawing.Point(82, 168);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "ОК";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.close.Location = new System.Drawing.Point(82, 168);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(75, 23);
+            this.close.TabIndex = 4;
+            this.close.Text = "ОК";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // aboutTheProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(241, 203);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.label3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "aboutTheProgram";
@@ -70,6 +70,6 @@
 
         #endregion
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button close;
     }
 }

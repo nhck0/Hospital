@@ -30,32 +30,31 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.reports = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.штатToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.reestrTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.staffTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.настройкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.подключениеКБазеДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.директорияСохраненияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutTheProgramTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.connToTheDBTSM = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveDirTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
+            this.gluingSheets = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
+            this.addDataBase = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.addStaff = new System.Windows.Forms.Button();
+            this.openReestr = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoFolderTSM = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoDBTSM = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoRowTSM = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -66,111 +65,103 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // reports
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(0, 105);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 42);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Отчеты";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(165, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 2;
+            this.reports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.reports.Location = new System.Drawing.Point(0, 105);
+            this.reports.Name = "reports";
+            this.reports.Size = new System.Drawing.Size(81, 42);
+            this.reports.TabIndex = 1;
+            this.reports.Text = "Отчеты";
+            this.reports.UseVisualStyleBackColor = true;
+            this.reports.Click += new System.EventHandler(this.reports_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.настройкаToolStripMenuItem});
+            this.actionTSM,
+            this.settingsTSM});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(899, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // файлToolStripMenuItem
+            // actionTSM
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.штатToolStripMenuItem,
-            this.выходToolStripMenuItem,
+            this.actionTSM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reestrTSM,
+            this.staffTSM,
+            this.reportsTSM,
             this.toolStripSeparator1,
-            this.оПрограммеToolStripMenuItem,
-            this.выходToolStripMenuItem1});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.aboutTheProgramTSM,
+            this.exitTSM});
+            this.actionTSM.Name = "actionTSM";
+            this.actionTSM.Size = new System.Drawing.Size(70, 20);
+            this.actionTSM.Text = "Действие";
             // 
-            // openToolStripMenuItem
+            // reestrTSM
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.openToolStripMenuItem.Text = "Реестр";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click_1);
+            this.reestrTSM.Name = "reestrTSM";
+            this.reestrTSM.Size = new System.Drawing.Size(152, 22);
+            this.reestrTSM.Text = "Реестр";
+            this.reestrTSM.Click += new System.EventHandler(this.reestrTSM_Click);
             // 
-            // штатToolStripMenuItem
+            // staffTSM
             // 
-            this.штатToolStripMenuItem.Name = "штатToolStripMenuItem";
-            this.штатToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.штатToolStripMenuItem.Text = "Штат";
-            this.штатToolStripMenuItem.Click += new System.EventHandler(this.штатToolStripMenuItem_Click);
+            this.staffTSM.Name = "staffTSM";
+            this.staffTSM.Size = new System.Drawing.Size(152, 22);
+            this.staffTSM.Text = "Штат";
+            this.staffTSM.Click += new System.EventHandler(this.staffTSM_Click);
             // 
-            // выходToolStripMenuItem
+            // reportsTSM
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.выходToolStripMenuItem.Text = "Отчеты";
-            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            this.reportsTSM.Name = "reportsTSM";
+            this.reportsTSM.Size = new System.Drawing.Size(152, 22);
+            this.reportsTSM.Text = "Отчеты";
+            this.reportsTSM.Click += new System.EventHandler(this.reportsTSM_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(146, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // оПрограммеToolStripMenuItem
+            // aboutTheProgramTSM
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            this.aboutTheProgramTSM.Name = "aboutTheProgramTSM";
+            this.aboutTheProgramTSM.Size = new System.Drawing.Size(152, 22);
+            this.aboutTheProgramTSM.Text = "О программе";
+            this.aboutTheProgramTSM.Click += new System.EventHandler(this.aboutTheProgramTSM_Click);
             // 
-            // выходToolStripMenuItem1
+            // exitTSM
             // 
-            this.выходToolStripMenuItem1.Name = "выходToolStripMenuItem1";
-            this.выходToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
-            this.выходToolStripMenuItem1.Text = "Выход";
-            this.выходToolStripMenuItem1.Click += new System.EventHandler(this.выходToolStripMenuItem1_Click);
+            this.exitTSM.Name = "exitTSM";
+            this.exitTSM.Size = new System.Drawing.Size(152, 22);
+            this.exitTSM.Text = "Выход";
+            this.exitTSM.Click += new System.EventHandler(this.exitTSM_Click);
             // 
-            // настройкаToolStripMenuItem
+            // settingsTSM
             // 
-            this.настройкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.подключениеКБазеДанныхToolStripMenuItem,
-            this.директорияСохраненияToolStripMenuItem});
-            this.настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
-            this.настройкаToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.настройкаToolStripMenuItem.Text = "Настройка";
+            this.settingsTSM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connToTheDBTSM,
+            this.saveDirTSM});
+            this.settingsTSM.Name = "settingsTSM";
+            this.settingsTSM.Size = new System.Drawing.Size(79, 20);
+            this.settingsTSM.Text = "Настройки";
             // 
-            // подключениеКБазеДанныхToolStripMenuItem
+            // connToTheDBTSM
             // 
-            this.подключениеКБазеДанныхToolStripMenuItem.Name = "подключениеКБазеДанныхToolStripMenuItem";
-            this.подключениеКБазеДанныхToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.подключениеКБазеДанныхToolStripMenuItem.Text = "Подключение к базе данных";
-            this.подключениеКБазеДанныхToolStripMenuItem.Click += new System.EventHandler(this.подключениеКБазеДанныхToolStripMenuItem_Click);
+            this.connToTheDBTSM.Name = "connToTheDBTSM";
+            this.connToTheDBTSM.Size = new System.Drawing.Size(253, 22);
+            this.connToTheDBTSM.Text = "Подключение к базе данных";
+            this.connToTheDBTSM.Click += new System.EventHandler(this.connToTheDBTSM_Click);
             // 
-            // директорияСохраненияToolStripMenuItem
+            // saveDirTSM
             // 
-            this.директорияСохраненияToolStripMenuItem.Name = "директорияСохраненияToolStripMenuItem";
-            this.директорияСохраненияToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.директорияСохраненияToolStripMenuItem.Text = "Директория сохранения отчетов";
-            this.директорияСохраненияToolStripMenuItem.Click += new System.EventHandler(this.директорияСохраненияToolStripMenuItem_Click);
+            this.saveDirTSM.Name = "saveDirTSM";
+            this.saveDirTSM.Size = new System.Drawing.Size(253, 22);
+            this.saveDirTSM.Text = "Директория сохранения отчетов";
+            this.saveDirTSM.Click += new System.EventHandler(this.saveDirTSM_Click);
             // 
             // dataGridView1
             // 
@@ -182,18 +173,18 @@
             this.dataGridView1.Size = new System.Drawing.Size(786, 294);
             this.dataGridView1.TabIndex = 0;
             // 
-            // button2
+            // gluingSheets
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(0, 147);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 35);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Объеденить листы";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.gluingSheets.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gluingSheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gluingSheets.Location = new System.Drawing.Point(0, 147);
+            this.gluingSheets.Name = "gluingSheets";
+            this.gluingSheets.Size = new System.Drawing.Size(81, 35);
+            this.gluingSheets.TabIndex = 9;
+            this.gluingSheets.Text = "Объеденить листы";
+            this.gluingSheets.UseVisualStyleBackColor = true;
+            this.gluingSheets.Visible = false;
+            this.gluingSheets.Click += new System.EventHandler(this.gluingSheets_Click);
             // 
             // tabControl1
             // 
@@ -217,87 +208,87 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // addDataBase
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(0, 35);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 35);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Добавить в БД";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.addDataBase.Dock = System.Windows.Forms.DockStyle.Top;
+            this.addDataBase.Location = new System.Drawing.Point(0, 35);
+            this.addDataBase.Name = "addDataBase";
+            this.addDataBase.Size = new System.Drawing.Size(81, 35);
+            this.addDataBase.TabIndex = 11;
+            this.addDataBase.Text = "Добавить в БД";
+            this.addDataBase.UseVisualStyleBackColor = true;
+            this.addDataBase.Click += new System.EventHandler(this.addDataBase_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.gluingSheets);
+            this.panel1.Controls.Add(this.reports);
+            this.panel1.Controls.Add(this.addStaff);
+            this.panel1.Controls.Add(this.addDataBase);
+            this.panel1.Controls.Add(this.openReestr);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(81, 332);
             this.panel1.TabIndex = 12;
             // 
-            // button5
+            // addStaff
             // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.Location = new System.Drawing.Point(0, 70);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 35);
-            this.button5.TabIndex = 13;
-            this.button5.Text = "Штат";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.addStaff.Dock = System.Windows.Forms.DockStyle.Top;
+            this.addStaff.Location = new System.Drawing.Point(0, 70);
+            this.addStaff.Name = "addStaff";
+            this.addStaff.Size = new System.Drawing.Size(81, 35);
+            this.addStaff.TabIndex = 13;
+            this.addStaff.Text = "Штат";
+            this.addStaff.UseVisualStyleBackColor = true;
+            this.addStaff.Click += new System.EventHandler(this.addStaff_Click);
             // 
-            // button4
+            // openReestr
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(81, 35);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Реестр";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.openReestr.Dock = System.Windows.Forms.DockStyle.Top;
+            this.openReestr.Location = new System.Drawing.Point(0, 0);
+            this.openReestr.Name = "openReestr";
+            this.openReestr.Size = new System.Drawing.Size(81, 35);
+            this.openReestr.TabIndex = 12;
+            this.openReestr.Text = "Реестр";
+            this.openReestr.UseVisualStyleBackColor = true;
+            this.openReestr.Click += new System.EventHandler(this.openReestr_Click);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel2,
-            this.toolStripStatusLabel3,
-            this.toolStripStatusLabel1});
+            this.infoFolderTSM,
+            this.infoDBTSM,
+            this.infoRowTSM});
             this.statusStrip1.Location = new System.Drawing.Point(0, 356);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(899, 22);
             this.statusStrip1.TabIndex = 13;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // infoFolderTSM
             // 
-            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 0);
+            this.infoFolderTSM.Image = global::Hospital.Properties.Resources.folder;
+            this.infoFolderTSM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.infoFolderTSM.Name = "infoFolderTSM";
+            this.infoFolderTSM.Size = new System.Drawing.Size(16, 17);
+            this.infoFolderTSM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.infoFolderTSM.Visible = false;
             // 
-            // toolStripStatusLabel2
+            // infoDBTSM
             // 
-            this.toolStripStatusLabel2.Image = global::Hospital.Properties.Resources.folder;
-            this.toolStripStatusLabel2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(16, 17);
-            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripStatusLabel2.Visible = false;
+            this.infoDBTSM.Image = global::Hospital.Properties.Resources.DB;
+            this.infoDBTSM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.infoDBTSM.Name = "infoDBTSM";
+            this.infoDBTSM.Size = new System.Drawing.Size(884, 17);
+            this.infoDBTSM.Spring = true;
+            this.infoDBTSM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // toolStripStatusLabel3
+            // infoRowTSM
             // 
-            this.toolStripStatusLabel3.Image = global::Hospital.Properties.Resources.DB;
-            this.toolStripStatusLabel3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(884, 17);
-            this.toolStripStatusLabel3.Spring = true;
-            this.toolStripStatusLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.infoRowTSM.Margin = new System.Windows.Forms.Padding(0);
+            this.infoRowTSM.Name = "infoRowTSM";
+            this.infoRowTSM.Size = new System.Drawing.Size(0, 0);
             // 
             // Main
             // 
@@ -307,7 +298,6 @@
             this.ClientSize = new System.Drawing.Size(899, 378);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -333,32 +323,31 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button reports;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem actionTSM;
+        private System.Windows.Forms.ToolStripMenuItem reestrTSM;
+        private System.Windows.Forms.Button gluingSheets;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button addDataBase;
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.BindingSource bindingSource1;
-        public System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button openReestr;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel infoFolderTSM;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ToolStripMenuItem штатToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem настройкаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem подключениеКБазеДанныхToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem директорияСохраненияToolStripMenuItem;
-        public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem reportsTSM;
+        private System.Windows.Forms.ToolStripMenuItem exitTSM;
+        private System.Windows.Forms.ToolStripMenuItem aboutTheProgramTSM;
+        private System.Windows.Forms.Button addStaff;
+        private System.Windows.Forms.ToolStripMenuItem staffTSM;
+        private System.Windows.Forms.ToolStripMenuItem settingsTSM;
+        private System.Windows.Forms.ToolStripMenuItem connToTheDBTSM;
+        private System.Windows.Forms.ToolStripMenuItem saveDirTSM;
+        public System.Windows.Forms.ToolStripStatusLabel infoDBTSM;
+        private System.Windows.Forms.ToolStripStatusLabel infoRowTSM;
         public System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

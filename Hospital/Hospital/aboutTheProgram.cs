@@ -17,7 +17,7 @@ namespace Hospital
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void close_Click(object sender, EventArgs e)
         {
             this.Close();
         }

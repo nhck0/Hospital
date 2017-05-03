@@ -104,7 +104,7 @@ namespace Hospital
             {
                 procWithOutParam(collProc);
             }
-                proc.toolStripStatusLabel3.Text = dateTimePicker1.Text;
+                proc.infoTableTSM.Text = dateTimePicker1.Text;
                 proc.dataGridView4.DataSource = ds.Tables[0];
                 proc.dataGridView6.DataSource = ds.Tables[1];
                 proc.dataGridView7.DataSource = ds.Tables[2];
@@ -115,7 +115,7 @@ namespace Hospital
             }
             catch(Exception)
             {
-                proc.toolStripStatusLabel3.Text = "";
+                proc.infoTableTSM.Text = "";
                 MessageBox.Show("Такой таблицы не существует!", "Ошибка!",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);              
             }
@@ -123,10 +123,10 @@ namespace Hospital
         private void procedureDialog_Load(object sender, EventArgs e)
         {
             procedure proc = this.Owner as procedure;
-            this.AcceptButton = button1;
+            this.AcceptButton = acceptButton;
             dateTimePicker1.CustomFormat = "MMMMyyyy";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Text = proc.toolStripStatusLabel3.Text;
+            dateTimePicker1.Text = proc.infoTableTSM.Text;
             DataTable posvr = ds.Tables.Add("Посещения по врачам");
             DataTable standarts = ds.Tables.Add("Нормативы мед помощи");
             DataTable uslug = ds.Tables.Add("Услуги амублаторной хирургии");
@@ -136,27 +136,27 @@ namespace Hospital
         }
 
         //sql procedure
-        private void button1_Click(object sender, EventArgs e)
+        private void acceptButton_Click(object sender, EventArgs e)
         {
             procedure proc = this.Owner as procedure;
             try
             {   
                 fillDGV();
 
-                proc.toolStripStatusLabel2.Text = "Данные на основе таблицы: ";
+                proc.infoTSM.Text = "Данные на основе таблицы: ";
 
                 if (proc.dataGridView7.Rows.Count == 0)
                 {
-                    proc.toolStripStatusLabel1.Image = Properties.Resources.noError;
-                    proc.toolStripStatusLabel1.Text = "Ошибок не найдено!";
-                    proc.button2.Enabled = false;
+                    proc.infoErrorTSM.Image = Properties.Resources.noError;
+                    proc.infoErrorTSM.Text = "Ошибок не найдено!";
+                    proc.saveChanges.Enabled = false;
                 }
                 else
                 {
-                    proc.toolStripStatusLabel1.Image = Properties.Resources.Error;
-                    proc.toolStripStatusLabel1.Text = "Найдены ошибки!";
+                    proc.infoErrorTSM.Image = Properties.Resources.Error;
+                    proc.infoErrorTSM.Text = "Найдены ошибки!";
                     proc.tabControl1.SelectedIndex = 5;
-                    proc.button2.Enabled = true;
+                    proc.saveChanges.Enabled = true;
                     MessageBox.Show("Найдены ошибки!", "Ошибки!",
                      MessageBoxButtons.OK, MessageBoxIcon.Exclamation);   
                 }
@@ -170,7 +170,7 @@ namespace Hospital
             }            
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
