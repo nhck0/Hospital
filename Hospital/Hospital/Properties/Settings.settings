@@ -11,5 +11,8 @@
     <Setting Name="hospitalConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=NORD\MSSQLSERVER1;Initial Catalog=hospital;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="saveDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

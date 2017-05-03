@@ -19,7 +19,8 @@ namespace Hospital
         }
 
         private bool checkConn()
-        {        
+        {
+            Main main = this.Owner as Main;
             try
             {
                 using (SqlConnection sqlConn =
@@ -31,6 +32,7 @@ namespace Hospital
                     MessageBox.Show("Подключение установлено!", "Подключение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Properties.Settings.Default.sqlServerName = textBox1.Text;
                     Properties.Settings.Default.sqlDataBaseName = textBox2.Text;
+                    main.toolStripStatusLabel3.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
                     return (sqlConn.State == ConnectionState.Open);                
                 }
             }
@@ -55,6 +57,7 @@ namespace Hospital
 
         private void sqlDataBase_Load(object sender, EventArgs e)
         {
+            AcceptButton = button1;
             textBox1.Text = Properties.Settings.Default.sqlServerName;
             textBox2.Text = Properties.Settings.Default.sqlDataBaseName;
         }

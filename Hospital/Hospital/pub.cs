@@ -9,6 +9,8 @@ namespace Hospital
 {
     class pub
     {
+
+
         sqlDataBase db = new sqlDataBase();
         public string getConnectionString()
         {
@@ -35,7 +37,6 @@ namespace Hospital
                 }
             }
         }
-
 
     }
 }

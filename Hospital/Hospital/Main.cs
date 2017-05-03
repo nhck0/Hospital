@@ -30,7 +30,7 @@ namespace Hospital
 
         private void Main_Load(object sender, EventArgs e)
         {
-            sqlDataBase db = new sqlDataBase();
+            toolStripStatusLabel3.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
             button2.Enabled = false;
             button3.Enabled = false;
         }
@@ -64,6 +64,8 @@ namespace Hospital
                 try
                 {
                     toolStripStatusLabel2.Text = "Директория файла: " + ofd.FileName;
+                    toolStripStatusLabel2.Visible = true;
+                    toolStripStatusLabel3.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
                     String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
                                 ofd.FileName +
@@ -201,24 +203,32 @@ namespace Hospital
         // SHTAT
         private void button5_Click(object sender, EventArgs e)
         {
-            openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
-            toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
-            if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
+            try
             {
-                //test
-                using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
+                openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
+                toolStripStatusLabel1.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+                if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
                 {
-                    string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
-                    sqlcon.Open();
-                    SqlCommand cmd = new SqlCommand(sql, sqlcon);
-                    cmd.ExecuteNonQuery();
-                    sqlcon.Close();
+                    using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
+                    {
+                        string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
+                        sqlcon.Open();
+                        SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                        cmd.ExecuteNonQuery();
+                        sqlcon.Close();
 
-                    p.sqlBulk("RepStaf196",ds.Tables[0]);
+                        p.sqlBulk("RepStaf196", ds.Tables[0]);
 
-                    MessageBox.Show("Штат обновлен!", "Информация",
-                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Штат обновлен!", "Информация",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("В используемой базе данных" + Environment.NewLine + 
+                    "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!",
+                    "Ошибка обновления!",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
         
@@ -245,7 +255,14 @@ namespace Hospital
         private void подключениеКБазеДанныхToolStripMenuItem_Click(object sender, EventArgs e)
         {
             sqlDataBase db = new sqlDataBase();
-            db.Show();
+            db.Owner = this;
+            db.ShowDialog();
+        }
+
+        private void директорияСохраненияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            Properties.Settings.Default.saveDir = folderBrowserDialog1.SelectedPath;
         }
     }    
 }

@@ -147,11 +147,13 @@ namespace Hospital
 
                 if (proc.dataGridView7.Rows.Count == 0)
                 {
+                    proc.toolStripStatusLabel1.Image = Properties.Resources.noError;
                     proc.toolStripStatusLabel1.Text = "Ошибок не найдено!";
                     proc.button2.Enabled = false;
                 }
                 else
                 {
+                    proc.toolStripStatusLabel1.Image = Properties.Resources.Error;
                     proc.toolStripStatusLabel1.Text = "Найдены ошибки!";
                     proc.tabControl1.SelectedIndex = 5;
                     proc.button2.Enabled = true;

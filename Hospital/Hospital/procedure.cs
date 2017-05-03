@@ -169,7 +169,7 @@ namespace Hospital
         {
             try
             {
-                folderName = "C:\\Users\\Норд\\Desktop\\Отчеты\\" +
+                folderName = Properties.Settings.Default.saveDir +"\\" +
                     toolStripStatusLabel3.Text.Substring(toolStripStatusLabel3.Text.Length - 4) + "\\" +
                     toolStripStatusLabel3.Text.Substring(0, toolStripStatusLabel3.Text.Length - 4) + "\\";
 
@@ -240,6 +240,7 @@ namespace Hospital
         private void procedure_Load(object sender, EventArgs e)
         {
             button2.Visible = false;
+            toolStripStatusLabel4.Text = "Директория сохранения отчетов: " + Properties.Settings.Default.saveDir;
             this.AcceptButton = button1;
         }
         //saveReports
@@ -304,5 +305,12 @@ namespace Hospital
             atp.Show();
         }
 
+        private void директорияСохраненияОтчетовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Main main = new Main();
+            main.folderBrowserDialog1.ShowDialog();
+            Properties.Settings.Default.saveDir = main.folderBrowserDialog1.SelectedPath;
+            toolStripStatusLabel4.Text = "Директория сохранения отчетов: " + Properties.Settings.Default.saveDir;
+        }
     }
 }

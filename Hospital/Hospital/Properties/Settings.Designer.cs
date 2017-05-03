@@ -58,5 +58,17 @@ namespace Hospital.Properties {
                 this["hospitalConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string saveDir {
+            get {
+                return ((string)(this["saveDir"]));
+            }
+            set {
+                this["saveDir"] = value;
+            }
+        }
     }
 }

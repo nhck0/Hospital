@@ -42,6 +42,7 @@
             this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.подключениеКБазеДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.директорияСохраненияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -51,14 +52,17 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,7 +152,8 @@
             // настройкаToolStripMenuItem
             // 
             this.настройкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.подключениеКБазеДанныхToolStripMenuItem});
+            this.подключениеКБазеДанныхToolStripMenuItem,
+            this.директорияСохраненияToolStripMenuItem});
             this.настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
             this.настройкаToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.настройкаToolStripMenuItem.Text = "Настройка";
@@ -156,9 +161,16 @@
             // подключениеКБазеДанныхToolStripMenuItem
             // 
             this.подключениеКБазеДанныхToolStripMenuItem.Name = "подключениеКБазеДанныхToolStripMenuItem";
-            this.подключениеКБазеДанныхToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.подключениеКБазеДанныхToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.подключениеКБазеДанныхToolStripMenuItem.Text = "Подключение к базе данных";
             this.подключениеКБазеДанныхToolStripMenuItem.Click += new System.EventHandler(this.подключениеКБазеДанныхToolStripMenuItem_Click);
+            // 
+            // директорияСохраненияToolStripMenuItem
+            // 
+            this.директорияСохраненияToolStripMenuItem.Name = "директорияСохраненияToolStripMenuItem";
+            this.директорияСохраненияToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.директорияСохраненияToolStripMenuItem.Text = "Директория сохранения отчетов";
+            this.директорияСохраненияToolStripMenuItem.Click += new System.EventHandler(this.директорияСохраненияToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -253,25 +265,39 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 356);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(899, 22);
             this.statusStrip1.TabIndex = 13;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(0, 3, 50, 2);
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(834, 17);
-            this.toolStripStatusLabel2.Spring = true;
-            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 0);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Image = global::Hospital.Properties.Resources.folder;
+            this.toolStripStatusLabel2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(16, 17);
+            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusLabel2.Visible = false;
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Image = global::Hospital.Properties.Resources.DB;
+            this.toolStripStatusLabel3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(884, 17);
+            this.toolStripStatusLabel3.Spring = true;
+            this.toolStripStatusLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Main
             // 
@@ -298,6 +324,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -323,12 +351,15 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ToolStripMenuItem штатToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem подключениеКБазеДанныхToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem директорияСохраненияToolStripMenuItem;
+        public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        public System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
