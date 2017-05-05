@@ -89,7 +89,7 @@ namespace Hospital
         {
             Main main = this.Owner as Main;
             try
-            { 
+            {
                 if (main != null)
                 {
                     // Establish the database server
@@ -99,7 +99,7 @@ namespace Hospital
                     Server server =
                        new Server(new ServerConnection(connection));
                     // Create table in database
-                    Database db = server.Databases["hospital"];
+                    Database db = server.Databases[Properties.Settings.Default.sqlDataBaseName];
                     // Create new table
                     Table newTable = new Table(db, dateTimePicker1.Text);
                     Column tempC = new Column();
@@ -122,7 +122,7 @@ namespace Hospital
 
                     newTable.Create();
                 }
-                p.sqlBulk(dateTimePicker1.Text,main.ds.Tables[0]);
+                p.sqlBulk(dateTimePicker1.Text, main.ds.Tables[0]);
 
                 MessageBox.Show("Таблица успешно добавлена!", "Запись таблицы",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -130,16 +130,21 @@ namespace Hospital
             }
             catch (Exception ex)
             {
-                if (main.dataGridView1.Columns[0].Name == "Номер истории болезни")
+                if (Properties.Settings.Default.sqlDataBaseName == "")
                 {
-                    MessageBox.Show("Таблица с таким именем уже существует!", 
+                    MessageBox.Show("Проверьте подключение к базе данных!",
+                   "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (main.dataGridView1.Columns[0].Name == "Номер истории болезни")
+                {
+                    MessageBox.Show("Таблица с таким именем уже существует!",
                         "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if (main.dataGridView1.Columns[0].Name == "Код")
                 {
-                    MessageBox.Show("Добавлять штат в базу данных не нужно!", 
+                    MessageBox.Show("Добавлять штат в базу данных не нужно!",
                         "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                }              
                 else
                 {
                     MessageBox.Show("Что-то пошло не так:" +

@@ -74,6 +74,10 @@ namespace Hospital
             }
             catch (Exception)
             {
+                if (Properties.Settings.Default.sqlDataBaseName == ""){
+                    MessageBox.Show("Проверьте подключение к базе данных",
+                        "Ошибка обновления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 MessageBox.Show("В используемой базе данных" + Environment.NewLine +
                     "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!",
                     "Ошибка обновления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -206,6 +210,7 @@ namespace Hospital
                 }
                 catch (Exception)
                 {
+                    GC.Collect();
                     addDataBase.Enabled = false;
                     MessageBox.Show("Содержимое файла не соответствует требуему формату", "Ошибка!",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -42,8 +42,16 @@ namespace Hospital
         // meth - overwriting
         private void saveReports_Click(object sender, EventArgs e)
         {
-            overwriting();
-            GC.Collect();
+            if(Properties.Settings.Default.saveDir == "")
+            {
+                MessageBox.Show("Укажите директорию сохранения отчетов!",
+                    "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                overwriting();
+                GC.Collect();
+            }
         }
 
         //meth - copyDT and sqlbulk
