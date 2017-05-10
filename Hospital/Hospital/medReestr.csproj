@@ -94,11 +94,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>hospitalDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
+    <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="main.Designer.cs">
+      <DependentUpon>main.cs</DependentUpon>
     </Compile>
     <Compile Include="procedure.cs">
       <SubType>Form</SubType>
@@ -120,6 +120,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="pub.cs" />
+    <Compile Include="services.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="services.Designer.cs">
+      <DependentUpon>services.cs</DependentUpon>
+    </Compile>
     <Compile Include="sqlCon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,8 +141,8 @@
     <EmbeddedResource Include="aboutTheProgram.resx">
       <DependentUpon>aboutTheProgram.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="main.resx">
+      <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="procedure.resx">
       <DependentUpon>procedure.cs</DependentUpon>
@@ -148,6 +154,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="services.resx">
+      <DependentUpon>services.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="sqlCon.resx">
       <DependentUpon>sqlCon.cs</DependentUpon>

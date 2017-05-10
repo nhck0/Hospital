@@ -104,6 +104,7 @@ namespace Hospital
             {
                 procWithOutParam(collProc);
             }
+
                 proc.infoTableTSM.Text = dateTimePicker1.Text;
                 proc.dataGridView4.DataSource = ds.Tables[0];
                 proc.dataGridView6.DataSource = ds.Tables[1];

@@ -20,7 +20,7 @@ namespace Hospital
 
         private bool checkConn()
         {
-            Main main = this.Owner as Main;
+            main main = this.Owner as main;
             try
             {
                 using (SqlConnection sqlConn =

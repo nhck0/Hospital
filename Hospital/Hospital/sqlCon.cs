@@ -87,7 +87,7 @@ namespace Hospital
         //Добавление таблицы в sql 
         private void addTable()
         {
-            Main main = this.Owner as Main;
+            main main = this.Owner as main;
             try
             {
                 if (main != null)

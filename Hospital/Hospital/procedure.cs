@@ -115,7 +115,7 @@ namespace Hospital
 
         private void saveDirTSM_Click(object sender, EventArgs e)
         {
-            Main main = new Main();
+            main main = new main();
             main.folderBrowserDialog1.ShowDialog();
             Properties.Settings.Default.saveDir = main.folderBrowserDialog1.SelectedPath;
             infoSaveDirTSM.Text = "Директория сохранения отчетов: " + Properties.Settings.Default.saveDir;

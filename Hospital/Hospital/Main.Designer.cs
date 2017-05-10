@@ -1,6 +1,6 @@
 ﻿namespace Hospital
 {
-    partial class Main
+    partial class main
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.reports = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actionTSM = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +56,7 @@
             this.infoRowTSM = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.Services = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -70,7 +71,7 @@
             this.reports.Dock = System.Windows.Forms.DockStyle.Top;
             this.reports.Location = new System.Drawing.Point(0, 105);
             this.reports.Name = "reports";
-            this.reports.Size = new System.Drawing.Size(81, 42);
+            this.reports.Size = new System.Drawing.Size(81, 35);
             this.reports.TabIndex = 1;
             this.reports.Text = "Отчеты";
             this.reports.UseVisualStyleBackColor = true;
@@ -103,40 +104,40 @@
             // reestrTSM
             // 
             this.reestrTSM.Name = "reestrTSM";
-            this.reestrTSM.Size = new System.Drawing.Size(152, 22);
+            this.reestrTSM.Size = new System.Drawing.Size(149, 22);
             this.reestrTSM.Text = "Реестр";
             this.reestrTSM.Click += new System.EventHandler(this.reestrTSM_Click);
             // 
             // staffTSM
             // 
             this.staffTSM.Name = "staffTSM";
-            this.staffTSM.Size = new System.Drawing.Size(152, 22);
+            this.staffTSM.Size = new System.Drawing.Size(149, 22);
             this.staffTSM.Text = "Штат";
             this.staffTSM.Click += new System.EventHandler(this.staffTSM_Click);
             // 
             // reportsTSM
             // 
             this.reportsTSM.Name = "reportsTSM";
-            this.reportsTSM.Size = new System.Drawing.Size(152, 22);
+            this.reportsTSM.Size = new System.Drawing.Size(149, 22);
             this.reportsTSM.Text = "Отчеты";
             this.reportsTSM.Click += new System.EventHandler(this.reportsTSM_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(146, 6);
             // 
             // aboutTheProgramTSM
             // 
             this.aboutTheProgramTSM.Name = "aboutTheProgramTSM";
-            this.aboutTheProgramTSM.Size = new System.Drawing.Size(152, 22);
+            this.aboutTheProgramTSM.Size = new System.Drawing.Size(149, 22);
             this.aboutTheProgramTSM.Text = "О программе";
             this.aboutTheProgramTSM.Click += new System.EventHandler(this.aboutTheProgramTSM_Click);
             // 
             // exitTSM
             // 
             this.exitTSM.Name = "exitTSM";
-            this.exitTSM.Size = new System.Drawing.Size(152, 22);
+            this.exitTSM.Size = new System.Drawing.Size(149, 22);
             this.exitTSM.Text = "Выход";
             this.exitTSM.Click += new System.EventHandler(this.exitTSM_Click);
             // 
@@ -177,7 +178,7 @@
             // 
             this.gluingSheets.Dock = System.Windows.Forms.DockStyle.Top;
             this.gluingSheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gluingSheets.Location = new System.Drawing.Point(0, 147);
+            this.gluingSheets.Location = new System.Drawing.Point(0, 140);
             this.gluingSheets.Name = "gluingSheets";
             this.gluingSheets.Size = new System.Drawing.Size(81, 35);
             this.gluingSheets.TabIndex = 9;
@@ -221,6 +222,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Services);
             this.panel1.Controls.Add(this.gluingSheets);
             this.panel1.Controls.Add(this.reports);
             this.panel1.Controls.Add(this.addStaff);
@@ -290,7 +292,18 @@
             this.infoRowTSM.Name = "infoRowTSM";
             this.infoRowTSM.Size = new System.Drawing.Size(0, 0);
             // 
-            // Main
+            // Services
+            // 
+            this.Services.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Services.Location = new System.Drawing.Point(0, 297);
+            this.Services.Name = "Services";
+            this.Services.Size = new System.Drawing.Size(81, 35);
+            this.Services.TabIndex = 14;
+            this.Services.Text = "Услуги";
+            this.Services.UseVisualStyleBackColor = true;
+            this.Services.Click += new System.EventHandler(this.Services_Click);
+            // 
+            // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -302,7 +315,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Main";
+            this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Главное окно";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -349,6 +362,7 @@
         public System.Windows.Forms.ToolStripStatusLabel infoDBTSM;
         private System.Windows.Forms.ToolStripStatusLabel infoRowTSM;
         public System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button Services;
     }
 }
 

@@ -15,9 +15,9 @@ using System.Data.OleDb;
 
 namespace Hospital
 {
-    public partial class Main : Form
+    public partial class main : Form
     {
-        public Main()
+        public main()
         {
             InitializeComponent();
         }
@@ -253,6 +253,12 @@ namespace Hospital
 
             //        }
             //}
+        }
+
+        private void Services_Click(object sender, EventArgs e)
+        {
+            services serv = new services();
+            serv.ShowDialog();
         }
     }
 }
