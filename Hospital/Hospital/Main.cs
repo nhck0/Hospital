@@ -38,8 +38,16 @@ namespace Hospital
         //block button 
         private void openReestr_Click(object sender, EventArgs e)
         {
-            openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
-            infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+            if (Properties.Settings.Default.sqlDataBaseName == "")
+            {
+                MessageBox.Show("Проверьте подключение к базе данных!",
+                    "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
+                infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+            }
         }
 
         private void addDataBase_Click(object sender, EventArgs e)
@@ -51,43 +59,54 @@ namespace Hospital
 
         private void addStaff_Click(object sender, EventArgs e)
         {
-            try
+            if (Properties.Settings.Default.sqlDataBaseName == "")
             {
-                openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
-                infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
-                if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
+                MessageBox.Show("Проверьте подключение к базе данных!",
+                    "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            } else
+            {
+                try
                 {
-                    using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
+                    openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
+                    infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
+                    if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
                     {
-                        string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
-                        sqlcon.Open();
-                        SqlCommand cmd = new SqlCommand(sql, sqlcon);
-                        cmd.ExecuteNonQuery();
-                        sqlcon.Close();
+                        using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
+                        {
+                            string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
+                            sqlcon.Open();
+                            SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                            cmd.ExecuteNonQuery();
+                            sqlcon.Close();
 
-                        p.sqlBulk("RepStaf196", ds.Tables[0]);
+                            p.sqlBulk("RepStaf196", ds.Tables[0]);
 
-                        MessageBox.Show("Штат обновлен!", "Информация",
-                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Штат обновлен!", "Информация",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
-            }
-            catch (Exception)
-            {
-                if (Properties.Settings.Default.sqlDataBaseName == ""){
-                    MessageBox.Show("Проверьте подключение к базе данных",
+                catch (Exception)
+                {
+                    MessageBox.Show("В используемой базе данных" + Environment.NewLine +
+                        "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!",
                         "Ошибка обновления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                MessageBox.Show("В используемой базе данных" + Environment.NewLine +
-                    "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!",
-                    "Ошибка обновления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void reports_Click(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.sqlDataBaseName == "")
+            {
+                MessageBox.Show("Проверьте подключение к базе данных!",
+                     "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
             procedure proc = new procedure();
             proc.ShowDialog();
+            }
         }
 
         //block TSM 
@@ -257,8 +276,15 @@ namespace Hospital
 
         private void Services_Click(object sender, EventArgs e)
         {
-            services serv = new services();
-            serv.ShowDialog();
+            if (Properties.Settings.Default.sqlDataBaseName == "")
+            {
+                MessageBox.Show("Проверьте подключение к базе данных!", "Предупреждение!",
+                      MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            } else {
+                services serv = new services();
+                serv.ShowDialog();
+            }
+            
         }
     }
 }
