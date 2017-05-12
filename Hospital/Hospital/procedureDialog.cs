@@ -81,12 +81,12 @@ namespace Hospital
             procedure proc = this.Owner as procedure;
             try
             { 
-                var nameProcWOP = new string[] { "num001", "num002", "num004" };
-                var nameProcWP = new string[] { "num003", "num005", "Найти ошибки" };
+                var nameProcWOP = new string[] { "Посещения по врачам", "Нормативы мед помощи", "Посещения по отделениям" };
+                var nameProcWP = new string[] { "Услуги амбулаторной хирургии", "Диспансеризация", "Найти ошибки" };
 
                 using (var sqlConn = new SqlConnection(p.getConnectionString()))
                     {
-                        var sqlCmd = new SqlCommand("assembleAll", sqlConn);
+                        var sqlCmd = new SqlCommand("Собрать все", sqlConn);
                         sqlCmd.CommandType = CommandType.StoredProcedure;
                         sqlCmd.Parameters.AddWithValue("@nameTab", dateTimePicker1.Text);
 
@@ -104,7 +104,6 @@ namespace Hospital
             {
                 procWithOutParam(collProc);
             }
-
                 proc.infoTableTSM.Text = dateTimePicker1.Text;
                 proc.dataGridView4.DataSource = ds.Tables[0];
                 proc.dataGridView6.DataSource = ds.Tables[1];

@@ -9,9 +9,6 @@ namespace Hospital
 {
     class pub
     {
-
-
-        sqlDataBase db = new sqlDataBase();
         public string getConnectionString()
         {
             return "Data Source=" + Properties.Settings.Default.sqlServerName + ";" +

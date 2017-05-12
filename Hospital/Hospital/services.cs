@@ -22,8 +22,15 @@ namespace Hospital
 
         private void delButton_Click(object sender, EventArgs e)
         {
-            int ind = dataGridView1.SelectedCells[0].RowIndex;
-            dataGridView1.Rows.RemoveAt(ind);
+            try {
+                int ind = dataGridView1.SelectedCells[0].RowIndex;
+                dataGridView1.Rows.RemoveAt(ind);
+                toolStripStatusLabel1.Text = "Количество услуг: " + (dataGridView1.Rows.Count - 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -52,7 +59,7 @@ namespace Hospital
                 try
                 {
                     var sqlCmd = new SqlCommand();
-                    sqlCmd.CommandText = ("Select * From [Uslugi]");
+                    sqlCmd.CommandText = ("Select * From [uslugi]");
                     sqlCmd.Connection = sqlConn;
                     sqlConn.Open();
                         dt.Load(sqlCmd.ExecuteReader());
@@ -68,6 +75,11 @@ namespace Hospital
                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Количество услуг: " + (dataGridView1.Rows.Count - 1).ToString();
         }
     }
 }
