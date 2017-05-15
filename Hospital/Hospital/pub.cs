@@ -11,9 +11,10 @@ namespace Hospital
     {
         public string getConnectionString()
         {
-            return "Data Source=" + Properties.Settings.Default.sqlServerName + ";" +
-                " Integrated Security=true;" +
-                "Initial Catalog=" + Properties.Settings.Default.sqlDataBaseName + ";";
+            // return "Server=" + Properties.Settings.Default.sqlServerName + ";Persist Security Info=false;" +
+            //   "Initial Catalog=" + Properties.Settings.Default.sqlDataBaseName + "User ID =" + Properties.Settings.Default.sqlLogin +";Password=" + Properties.Settings.Default.sqlPassword +";"; 
+            return "Server=" + Properties.Settings.Default.sqlServerName + ";Persist Security Info=false;" +
+               "Initial Catalog=" + Properties.Settings.Default.sqlDataBaseName + ";User ID=" + Properties.Settings.Default.sqlLogin + ";Password=" + Properties.Settings.Default.sqlPassword;
         }
 
         public void sqlBulk(string nameTab, System.Data.DataTable numTab)

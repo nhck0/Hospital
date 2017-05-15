@@ -49,18 +49,6 @@ namespace Hospital.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NORD\\MSSQLSERVER1;Initial Catalog=hospital;Integrated Security=True")]
-        public string hospitalConnectionString {
-            get {
-                return ((string)(this["hospitalConnectionString"]));
-            }
-            set {
-                this["hospitalConnectionString"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string saveDir {
             get {
@@ -78,6 +66,42 @@ namespace Hospital.Properties {
         public string hospitalConnectionString1 {
             get {
                 return ((string)(this["hospitalConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NORD\\MSSQLSERVER1;Initial Catalog=hospital;Integrated Security=True")]
+        public string hospitalConnectionString {
+            get {
+                return ((string)(this["hospitalConnectionString"]));
+            }
+            set {
+                this["hospitalConnectionString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string sqlLogin {
+            get {
+                return ((string)(this["sqlLogin"]));
+            }
+            set {
+                this["sqlLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string sqlPassword {
+            get {
+                return ((string)(this["sqlPassword"]));
+            }
+            set {
+                this["sqlPassword"] = value;
             }
         }
     }

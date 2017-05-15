@@ -24,28 +24,31 @@ namespace Hospital
             try
             {
                 using (SqlConnection sqlConn =
-                    new SqlConnection("Data Source=" + nameServerTB.Text + ";" +
-                " Integrated Security=true;" +
-                "Initial Catalog=" + nameDataBaseTB.Text + ";"))
+                    new SqlConnection("Server=" + nameServerBT.Text + ";Persist Security Info=false;" +
+                "Initial Catalog=" + nameDataBaseBT.Text + ";User ID=" + loginBT.Text +";Password=" + passBT.Text))
                 {
                     sqlConn.Open();
                     MessageBox.Show("Подключение установлено!", "Подключение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Properties.Settings.Default.sqlServerName = nameServerTB.Text;
-                    Properties.Settings.Default.sqlDataBaseName = nameDataBaseTB.Text;
+                    Properties.Settings.Default.sqlServerName = nameServerBT.Text;
+                    Properties.Settings.Default.sqlDataBaseName = nameDataBaseBT.Text;
+                    Properties.Settings.Default.sqlLogin = loginBT.Text;
+                    Properties.Settings.Default.sqlPassword = passBT.Text;
                     main.infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
+                    this.Hide();
                     return (sqlConn.State == ConnectionState.Open);                
                 }
+                
             }
-            catch (SqlException)
+            catch (SqlException ex )
             {
-                MessageBox.Show("Нет соединения с базой!", "Подключение...",
+                MessageBox.Show("Нет соединения с базой!" + ex, "Подключение...",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Нет соединения с базой!", "Подключение...",
+                MessageBox.Show("Нет соединения с базой!" + ex, "Подключение...",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -58,8 +61,8 @@ namespace Hospital
         private void sqlDataBase_Load(object sender, EventArgs e)
         {
             AcceptButton = checkConnection;
-            nameServerTB.Text = Properties.Settings.Default.sqlServerName;
-            nameDataBaseTB.Text = Properties.Settings.Default.sqlDataBaseName;
+            nameServerBT.Text = Properties.Settings.Default.sqlServerName;
+            nameDataBaseBT.Text = Properties.Settings.Default.sqlDataBaseName;
         }
     }
 }

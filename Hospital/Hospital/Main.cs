@@ -86,10 +86,10 @@ namespace Hospital
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     MessageBox.Show("В используемой базе данных" + Environment.NewLine +
-                        "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!",
+                        "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!" + ex,
                         "Ошибка обновления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
