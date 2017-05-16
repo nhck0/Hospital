@@ -31,7 +31,6 @@ namespace Hospital
         private void Main_Load(object sender, EventArgs e)
         {
             infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
-            gluingSheets.Enabled = false;
             addDataBase.Enabled = false;
         }
 
@@ -86,10 +85,10 @@ namespace Hospital
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("В используемой базе данных" + Environment.NewLine +
-                        "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!" + ex,
+                        "нет таблицы штат!" + Environment.NewLine + Environment.NewLine + "Таблица не будет обновлена!",
                         "Ошибка обновления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

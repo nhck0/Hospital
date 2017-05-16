@@ -11,8 +11,6 @@ namespace Hospital
     {
         public string getConnectionString()
         {
-            // return "Server=" + Properties.Settings.Default.sqlServerName + ";Persist Security Info=false;" +
-            //   "Initial Catalog=" + Properties.Settings.Default.sqlDataBaseName + "User ID =" + Properties.Settings.Default.sqlLogin +";Password=" + Properties.Settings.Default.sqlPassword +";"; 
             return "Server=" + Properties.Settings.Default.sqlServerName + ";Persist Security Info=false;" +
                "Initial Catalog=" + Properties.Settings.Default.sqlDataBaseName + ";User ID=" + Properties.Settings.Default.sqlLogin + ";Password=" + Properties.Settings.Default.sqlPassword;
         }
