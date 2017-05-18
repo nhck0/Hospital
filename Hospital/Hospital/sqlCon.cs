@@ -92,36 +92,36 @@ namespace Hospital
             {
                 if (main != null)
                 {
-                    // Establish the database server
+                    //Строка подключенияя
                     string connectionString = p.getConnectionString();
                     SqlConnection connection =
                        new SqlConnection(connectionString);
                     Server server =
                        new Server(new ServerConnection(connection));
-                    // Create table in database
+                    // Указываем имя базы данных
                     Database db = server.Databases[Properties.Settings.Default.sqlDataBaseName];
-                    // Create new table
+                    // Создаем новую таблицу 
                     Table newTable = new Table(db, dateTimePicker1.Text);
                     Column tempC = new Column();
 
-                    //Add the column names and types from the datatable into the new table
-                    //Using the columns name and type property
+                    //Копируем стобцы из dataSet в базу данных 
+                    //и определяем их тип
                     foreach (DataColumn dc in main.ds.Tables[0].Columns)
                     {
-                        //Create columns from datatable column schema
                         tempC = new Column(newTable, dc.ColumnName);
+                        //Присваеваем тип данных столбцу
                         tempC.DataType = GetDataType(dc.ColumnName.ToString());
 
                         newTable.Columns.Add(tempC);
                     }
+                    newTable.Create();
                     //  key
                     //Index index = new Index(newTable, "ID");
                     //index.IndexKeyType = IndexKeyType.DriPrimaryKey;
                     //index.IndexedColumns.Add(new IndexedColumn(index, "ID"));
                     //newTable.Indexes.Add(index);
-
-                    newTable.Create();
                 }
+                //Заполняем таблицу данными из dataSet
                 p.sqlBulk(dateTimePicker1.Text, main.ds.Tables[0]);
 
                 MessageBox.Show("Таблица успешно добавлена!", "Запись таблицы",

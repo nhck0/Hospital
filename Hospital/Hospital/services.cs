@@ -26,6 +26,7 @@ namespace Hospital
                 int ind = dataGridView1.SelectedCells[0].RowIndex;
                 dataGridView1.Rows.RemoveAt(ind);
                 toolStripStatusLabel1.Text = "Количество услуг: " + (dataGridView1.Rows.Count - 1).ToString();
+                saveButton.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -66,6 +67,7 @@ namespace Hospital
                         dataGridView1.DataSource = dt;                    
                     sqlConn.Close();
                     toolStripStatusLabel1.Text = "Количество услуг: " + (dataGridView1.Rows.Count - 1).ToString();
+                    saveButton.Enabled = false;
                 }
 
                 catch (Exception ex)
@@ -80,6 +82,7 @@ namespace Hospital
         private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             toolStripStatusLabel1.Text = "Количество услуг: " + (dataGridView1.Rows.Count - 1).ToString();
+            saveButton.Enabled = true;
         }
     }
 }

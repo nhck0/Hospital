@@ -18,7 +18,7 @@ namespace Hospital
             InitializeComponent();
         }
 
-        private bool checkConn()
+        private void checkConn()
         {
             main main = this.Owner as main;
             try
@@ -27,6 +27,7 @@ namespace Hospital
                     new SqlConnection("Server=" + nameServerBT.Text + ";Persist Security Info=false;" +
                 "Initial Catalog=" + nameDataBaseBT.Text + ";User ID=" + loginBT.Text +";Password=" + passBT.Text))
                 {
+                    //Проверка подключения к базе данных
                     sqlConn.Open();
                     MessageBox.Show("Подключение установлено!", "Подключение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Properties.Settings.Default.sqlServerName = nameServerBT.Text;
@@ -35,7 +36,6 @@ namespace Hospital
                     Properties.Settings.Default.sqlPassword = passBT.Text;
                     main.infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
                     this.Hide();
-                    return (sqlConn.State == ConnectionState.Open);                
                 }
                 
             }
@@ -43,14 +43,12 @@ namespace Hospital
             {
                 MessageBox.Show("Нет соединения с базой!" + ex, "Подключение...",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Нет соединения с базой!" + ex, "Подключение...",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
         private void checkConnection_Click(object sender, EventArgs e)

@@ -71,18 +71,6 @@ namespace Hospital.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NORD\\MSSQLSERVER1;Initial Catalog=hospital;Integrated Security=True")]
-        public string hospitalConnectionString {
-            get {
-                return ((string)(this["hospitalConnectionString"]));
-            }
-            set {
-                this["hospitalConnectionString"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string sqlLogin {
             get {
@@ -102,6 +90,18 @@ namespace Hospital.Properties {
             }
             set {
                 this["sqlPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NORD\\MSSQLSERVER1;Initial Catalog=hospital;Integrated Security=True")]
+        public string hospitalConnectionString {
+            get {
+                return ((string)(this["hospitalConnectionString"]));
+            }
+            set {
+                this["hospitalConnectionString"] = value;
             }
         }
     }

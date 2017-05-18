@@ -32,7 +32,7 @@ namespace Hospital
             this.AcceptButton = updateReports;
         }
 
-        //block button 
+        //buttons
         private void updateReports_Click(object sender, EventArgs e)
         {
             procedureDialog procd = new procedureDialog();
@@ -76,7 +76,7 @@ namespace Hospital
             }
         }
 
-        //block TSM 
+        //TSM
         private void mainWinTSM_Click(object sender, EventArgs e)
         {
             procedure_FormClosing(sender, (e as FormClosingEventArgs));
@@ -121,7 +121,7 @@ namespace Hospital
             infoSaveDirTSM.Text = "Директория сохранения отчетов: " + Properties.Settings.Default.saveDir;
         }
 
-        //block methods 
+        //methods
         private void excelSave(DataGridView dgv, TabPage tabp)
         {
             Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
@@ -130,31 +130,37 @@ namespace Hospital
             Microsoft.Office.Interop.Excel.Range ExcelRange;
             Microsoft.Office.Interop.Excel.Range ExcelRange2;
 
+            //Создание книги и листа.
             ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
             ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
-
+            //Статическая информация
             ExcelWorkSheet.Cells[1, 1] = "Данные реестров мед помощи";
             ExcelWorkSheet.Cells[2, 1] = DateTime.Now.ToShortDateString().ToString();
-            ExcelWorkSheet.Cells[3, 1] = "За период с 01." + DateTime.ParseExact(infoTableTSM.Text.Substring(0, infoTableTSM.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month + "." +
+            ExcelWorkSheet.Cells[3, 1] = "За период с 01." + DateTime.ParseExact(infoTableTSM.Text.Substring(0, infoTableTSM.Text.Length - 4),
+                "MMMM", CultureInfo.CurrentCulture).Month + "." +
                 infoTableTSM.Text.Substring(infoTableTSM.Text.Length - 4) + " по " +
-                DateTime.DaysInMonth(Convert.ToInt32(infoTableTSM.Text.Substring(infoTableTSM.Text.Length - 4)), DateTime.ParseExact(infoTableTSM.Text.Substring(0, infoTableTSM.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month) + "." +
+                //Опрделение количества дней в месяце.
+                DateTime.DaysInMonth(Convert.ToInt32(infoTableTSM.Text.Substring(infoTableTSM.Text.Length - 4)),
+                DateTime.ParseExact(infoTableTSM.Text.Substring(0, infoTableTSM.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month) + "." +
+                //Форматирование месяца.
                 DateTime.ParseExact(infoTableTSM.Text.Substring(0, infoTableTSM.Text.Length - 4), "MMMM", CultureInfo.CurrentCulture).Month + "." +
                 infoTableTSM.Text.Substring(infoTableTSM.Text.Length - 4);
             ExcelWorkSheet.Cells[4, 1] = "МО: 1637 Полевская ЦГБ";
 
+            //Объединение ячеек.
             ExcelWorkSheet.Range[ExcelWorkSheet.Cells[5, 1], ExcelWorkSheet.Cells[5, dgv.Columns.Count]].Merge(Type.Missing);
             ExcelWorkSheet.Cells[5, 1] = tabp.Text;
+            //Выравнивание ячейки по центру.
             ExcelRange = ExcelWorkSheet.get_Range("A5", "A5");
             ExcelRange.HorizontalAlignment = Constants.xlCenter;
             ExcelRange.VerticalAlignment = Constants.xlCenter;
 
+            //Формирование границ.
             ExcelRange2 = ExcelWorkSheet.get_Range("5:" + (dgv.Rows.Count + 5), Type.Missing);
-
             ExcelRange2 = ExcelWorkSheet.Range[ExcelWorkSheet.Cells[5, 1], ExcelWorkSheet.Cells[(dgv.Rows.Count + 6), dgv.Columns.Count]];
-
-            //ExcelRange2 = ExcelWorkSheet.get_Range(ExcelWorkSheet.Cells[1, 1], ExcelWorkSheet.Cells[3, 3]);
             ExcelRange2.Borders.ColorIndex = 0; 
 
+            //Выгрузка данных.
             for (int i = 1; i < dgv.ColumnCount + 1; i++)
             {
                 ExcelWorkSheet.Cells[6, i] = dgv.Columns[i - 1].HeaderText;
@@ -168,30 +174,31 @@ namespace Hospital
                     {
                         ExcelApp.Cells[i + 7, j + 1] = 0;
                     }else ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
-
                 }
             }
-
+            //Ширина по размеру текста.
             ExcelApp.Columns.AutoFit();
             ExcelApp.DisplayAlerts = false;
-            
+            //Автосохранение и присвоение имени отчета.
             ExcelWorkBook.Close(true, folderName + tabp.Text, Type.Missing);
 
+            //Отчистка процессов.
             ExcelWorkBook = null;
             ExcelApp = null;
         }
         private void copyToDT()
         {         
+            //Копирование данных из DGV в dataTable.
             System.Data.DataTable dt = ds.Tables.Add("problem");
             for (int iCol = 0; iCol < dataGridView7.Columns.Count; iCol++)
             {
                 dt.Columns.Add(dataGridView7.Columns[iCol].Name);
             }
-
+            //перебор строк.
             foreach (DataGridViewRow row in dataGridView7.Rows)
             {
                 DataRow datarw = dt.NewRow();
-
+                //Подставление значений в ячейки.
                 for (int iCol = 0; iCol < dataGridView7.Columns.Count; iCol++)
                 {
                     datarw[iCol] = row.Cells[iCol].Value;
@@ -210,12 +217,14 @@ namespace Hospital
 
                 using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
                 {
-                    string sql = "DELETE FROM " + infoTableTSM.Text + " where " + infoTableTSM.Text + ".[Код медицинского работника] = '0' ";
+                    //Запрос на удаление строк.
+                    string sql = "DELETE FROM " + infoTableTSM.Text + " where " +
+                        infoTableTSM.Text + ".[Код медицинского работника] = '0' ";
                     sqlcon.Open();
                     SqlCommand cmd = new SqlCommand(sql, sqlcon);
                     cmd.ExecuteNonQuery();
                     sqlcon.Close();
-
+                    //Запись измененных строк.
                     p.sqlBulk(infoTableTSM.Text,ds.Tables[0]);
                     ds.Tables.RemoveAt(0);
 
@@ -237,11 +246,13 @@ namespace Hospital
         {
             try
             {
+                //Директория сохранения.
                 folderName = Properties.Settings.Default.saveDir +"\\" +
                     infoTableTSM.Text.Substring(infoTableTSM.Text.Length - 4) + "\\" +
                     infoTableTSM.Text.Substring(0, infoTableTSM.Text.Length - 4) + "\\";
 
                 DirectoryInfo dirInf = new DirectoryInfo(folderName);
+                //Проверка на наличие ошибок.
                 if (dataGridView7.Rows.Count > 0)
                 {
                     MessageBox.Show("После исправления ошибок" + Environment.NewLine + "необходимо обновить отчеты!", "Предупреждение!",
@@ -249,12 +260,13 @@ namespace Hospital
                 }
                 else
                 {
+                    //Проверка перезаписи отчетов.
                     if (dirInf.Exists)
                     {
                         DialogResult result = MessageBox.Show("Отчеты за этот месяц уже сформированы," + Environment.NewLine +
                             "данные будут перезаписаны, продолжить ?",
                             "Перезапись", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
+                        //Перезапись отчетов.
                         if (result == DialogResult.Yes)
                         {
                             excelSave(dataGridView2, tabPage2);
@@ -273,6 +285,7 @@ namespace Hospital
                     }
                     else
                     {
+                        //Создание директории и запись отчетов.
                         Directory.CreateDirectory(folderName);
 
                         excelSave(dataGridView2, tabPage2);
@@ -297,6 +310,8 @@ namespace Hospital
         {
             this.Hide();
         }
+
+        // Кнопка сохранить изменения
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 5)

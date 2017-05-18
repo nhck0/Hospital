@@ -23,15 +23,16 @@ namespace Hospital
         }
 
         OpenFileDialog ofd = new OpenFileDialog();
-        DataTable tb = new DataTable();
-        DataTable tb2 = new DataTable();
+        DataTable dt = new DataTable();
+       // DataTable tb2 = new DataTable();
         public DataSet ds = new DataSet();
         pub p = new pub();
 
         private void Main_Load(object sender, EventArgs e)
         {
             infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
-            addDataBase.Enabled = false;
+           
+            addToDataBase.Enabled = false;
         }
 
         //block button 
@@ -44,12 +45,18 @@ namespace Hospital
             }
             else
             {
-                openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
+                //Выборка необходимых столбцов
+                openFile("[Номер истории болезни],[Код МЭС],[Фамилия пациента],[Имя пациента],[Отчество пациента],"+
+                    "[Пол пациента],[Дата рождения пациента],[Сумма экспертная по базовому тарифу],[МО прикрепления],"+
+                    "[Код отделения, в котором оказана услуга] as [Код отделения],[Код участка, в котором оказана услуга] as [Код участка],"+
+                    "[Код подучастка, в котором оказана услуга] as [Код подучастка],[Диагноз],[Код услуги],"+
+                    "[Код медицинского работника, оказавшего медицинскую услугу] as [Код медицинского работника],"+
+                    "[Сумма экспертная по базовому тарифу итог],[Признак учета при контроле объемов по ТП]");
                 infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
             }
         }
 
-        private void addDataBase_Click(object sender, EventArgs e)
+        private void addToDataBase_Click(object sender, EventArgs e)
         {
             sqlCon f = new sqlCon();
             f.Owner = this;
@@ -66,18 +73,27 @@ namespace Hospital
             {
                 try
                 {
-                    openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],[Тип занятия должности],[МО по основному месту работы],[Вид должности],[Реквизитты документа о принятии на работу]");
+                    //Выборка необходимых столбцов
+                    openFile("[Код],[ФИО мед Работника],[Отделение],[Участок],[Пункт],[Наименование],"+
+                        "[Специальность],[Кол-во ставок],[Дата начала],[Дата окончания],[Табельный номер],"+
+                        "[Тип занятия должности],[МО по основному месту работы],"+
+                        "[Вид должности],[Реквизитты документа о принятии на работу]");
+
                     infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
-                    if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 30000)
+                    
+                    // Заперт выгрузки пустых файлов.
+                    if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 20000)
                     {
                         using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
                         {
+                            //Удаление всех записей
                             string sql = "DELETE FROM [RepStaf196] where  [Код] is not Null ";
                             sqlcon.Open();
                             SqlCommand cmd = new SqlCommand(sql, sqlcon);
                             cmd.ExecuteNonQuery();
                             sqlcon.Close();
-
+                            
+                            //Заполнение таблицы RepStaf196 новым набором записей
                             p.sqlBulk("RepStaf196", ds.Tables[0]);
 
                             MessageBox.Show("Штат обновлен!", "Информация",
@@ -166,21 +182,20 @@ namespace Hospital
             }
         }
 
-        private void importTB(string columns)
+        private void importTB(string columnsName)
         {
             if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                addDataBase.Enabled = true;
+            {               
                 ds.Clear();
-                //DataTable tb = new DataTable();
-                tb.Rows.Clear();
-                tb.Columns.Clear();
+                dt.Rows.Clear();
+                dt.Columns.Clear();
                 try
                 {
                     infoFolderTSM.Text = "Директория файла: " + ofd.FileName;
                     infoFolderTSM.Visible = true;
                     infoDBTSM.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
+                    //Строка подключения
                     String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
                                 ofd.FileName +
                                 ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
@@ -189,23 +204,28 @@ namespace Hospital
                         new System.Data.OleDb.OleDbConnection(constr);
                     con.Open();
 
+                    //Разметка таблицы
                     DataTable schemaTable = con.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Tables,
                     new object[] { null, null, null, "TABLE" });
 
-                    string sheet1 = (string)schemaTable.Rows[0].ItemArray[2]; //numSheet
+                    //Номер листа
+                    string sheet1 = (string)schemaTable.Rows[0].ItemArray[2];
+                    //Запрос на выборку
+                    string select = String.Format("SELECT " + columnsName + " FROM[{0}]", sheet1); 
 
-                    //string select = String.Format(" SELECT [Код ] from [{0}]", sheet1);
-                    string select = String.Format("SELECT " + columns + " FROM[{0}]", sheet1);
-                    //string select = String.Format("SELECT [Номер истории болезни/ талона амбулаторного пациента / карты вызова СМП] AS [Номер истории болезни] FROM [{0}]", sheet1);
-                    // [Номер истории болезни// талона амбулаторного пациента // карты вызова СМП] AS [Номер истории болезни]
                     tabControl1.TabPages[0].Text = sheet1.ToString()/*Substring(1, sheet1.Length -3)*/;
+                    //Вызов запроса
                     System.Data.OleDb.OleDbDataAdapter ad =
                         new System.Data.OleDb.OleDbDataAdapter(select, con);
-
+                    //Заполнение DataSet данными              
                     ad.Fill(ds);
-                    tb = ds.Tables[0];
+                    //Заполнение dataTable из dataSet
+                    dt = ds.Tables[0];
                     con.Close();
-                    dataGridView1.DataSource = tb;
+                    //Заполнение DGV из dataTable
+                    dataGridView1.DataSource = dt;
+                    addToDataBase.Enabled = true;
+                    con.Close();
 
                     // Для скливания листов
                     //if (schemaTable.Rows.Count == 2)
@@ -224,20 +244,14 @@ namespace Hospital
                     //    con.Close();
                     //    dataGridView1.DataSource = tb2;
                     //}
-                    con.Close();
                 }
                 catch (Exception)
                 {
                     GC.Collect();
-                    addDataBase.Enabled = false;
-                    MessageBox.Show("Содержимое файла не соответствует требуему формату", "Ошибка!",
+                    addToDataBase.Enabled = false;
+                    MessageBox.Show("Содержимое файла не соответствует требуемому формату", "Ошибка!",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Вы не выбрали файл для открытия",
-                    "Загрузка данных...", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -251,10 +265,10 @@ namespace Hospital
         // visible - false
         private void gluingSheets_Click(object sender, EventArgs e)
         {
-            foreach (DataRow row in tb2.Rows)
-            {
-                tb.ImportRow(row);
-            }
+            //foreach (DataRow row in tb2.Rows)
+            //{
+               // tb.ImportRow(row);
+            //}
             //for (int i = 0; i < dataGridView2.Columns.Count; i++)
             //{
             //    for (int j = 0; j < dataGridView1.Columns.Count; j++)

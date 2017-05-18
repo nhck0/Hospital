@@ -28,12 +28,14 @@ namespace Hospital
             {
                 try
                 {
+                    //Вызов процедуры из БД без параметра
                     var sqlCmd = new SqlCommand(nameProcedure, sqlConn);
                     sqlCmd.CommandType = CommandType.StoredProcedure;
 
                     sqlConn.Open();
                     using (SqlDataReader dr = sqlCmd.ExecuteReader())
                     {
+                        //Заполнение таблицы данными.
                         ds.Tables[tab].Load(dr);
                         tab++;
                     }
@@ -55,6 +57,7 @@ namespace Hospital
             { 
                 try
                 {
+                    //Вызов процедуры из БД с параметром
                     var sqlCmd = new SqlCommand(nameProcedure, sqlConn);
                     sqlCmd.CommandType = CommandType.StoredProcedure;
                     sqlCmd.Parameters.AddWithValue("@nameTab", paramValue);
@@ -62,6 +65,7 @@ namespace Hospital
                     sqlConn.Open();
                     using (SqlDataReader dr = sqlCmd.ExecuteReader())
                     {
+                        //Заполнение таблицы данными.
                         ds.Tables[tab].Load(dr);
                         tab++;
                     }
@@ -84,6 +88,7 @@ namespace Hospital
                 var nameProcWOP = new string[] { "Посещения по врачам", "Нормативы мед помощи", "Посещения по отделениям" };
                 var nameProcWP = new string[] { "Услуги амбулаторной хирургии", "Диспансеризация", "Найти ошибки" };
 
+                //Обновление всех таблиц.
                 using (var sqlConn = new SqlConnection(p.getConnectionString()))
                     {
                         var sqlCmd = new SqlCommand("Собрать все", sqlConn);
@@ -94,16 +99,17 @@ namespace Hospital
                         sqlCmd.ExecuteNonQuery();
                         sqlConn.Close();
                     }
+                //Формирование отчетов и заполнение DGV.
+                foreach (var collProc in nameProcWP)
+                {
+                    procWithParam(collProc, dateTimePicker1.Text);
+                }
 
-            foreach (var collProc in nameProcWP)
-            {
-                procWithParam(collProc, dateTimePicker1.Text);
-            }
+                foreach (var collProc in nameProcWOP)
+                {
+                    procWithOutParam(collProc);
+                }
 
-            foreach (var collProc in nameProcWOP)
-            {
-                procWithOutParam(collProc);
-            }
                 proc.infoTableTSM.Text = dateTimePicker1.Text;
                 proc.dataGridView4.DataSource = ds.Tables[0];
                 proc.dataGridView6.DataSource = ds.Tables[1];

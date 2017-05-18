@@ -46,8 +46,9 @@
             this.gluingSheets = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.addDataBase = new System.Windows.Forms.Button();
+            this.addToDataBase = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Services = new System.Windows.Forms.Button();
             this.addStaff = new System.Windows.Forms.Button();
             this.openReestr = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -56,7 +57,6 @@
             this.infoRowTSM = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.Services = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -209,16 +209,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // addDataBase
+            // addToDataBase
             // 
-            this.addDataBase.Dock = System.Windows.Forms.DockStyle.Top;
-            this.addDataBase.Location = new System.Drawing.Point(0, 35);
-            this.addDataBase.Name = "addDataBase";
-            this.addDataBase.Size = new System.Drawing.Size(81, 35);
-            this.addDataBase.TabIndex = 11;
-            this.addDataBase.Text = "Добавить в БД";
-            this.addDataBase.UseVisualStyleBackColor = true;
-            this.addDataBase.Click += new System.EventHandler(this.addDataBase_Click);
+            this.addToDataBase.Dock = System.Windows.Forms.DockStyle.Top;
+            this.addToDataBase.Location = new System.Drawing.Point(0, 35);
+            this.addToDataBase.Name = "addToDataBase";
+            this.addToDataBase.Size = new System.Drawing.Size(81, 35);
+            this.addToDataBase.TabIndex = 11;
+            this.addToDataBase.Text = "Добавить в БД";
+            this.addToDataBase.UseVisualStyleBackColor = true;
+            this.addToDataBase.Click += new System.EventHandler(this.addToDataBase_Click);
             // 
             // panel1
             // 
@@ -226,13 +226,24 @@
             this.panel1.Controls.Add(this.gluingSheets);
             this.panel1.Controls.Add(this.reports);
             this.panel1.Controls.Add(this.addStaff);
-            this.panel1.Controls.Add(this.addDataBase);
+            this.panel1.Controls.Add(this.addToDataBase);
             this.panel1.Controls.Add(this.openReestr);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(81, 332);
             this.panel1.TabIndex = 12;
+            // 
+            // Services
+            // 
+            this.Services.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Services.Location = new System.Drawing.Point(0, 297);
+            this.Services.Name = "Services";
+            this.Services.Size = new System.Drawing.Size(81, 35);
+            this.Services.TabIndex = 14;
+            this.Services.Text = "Услуги";
+            this.Services.UseVisualStyleBackColor = true;
+            this.Services.Click += new System.EventHandler(this.Services_Click);
             // 
             // addStaff
             // 
@@ -292,17 +303,6 @@
             this.infoRowTSM.Name = "infoRowTSM";
             this.infoRowTSM.Size = new System.Drawing.Size(0, 0);
             // 
-            // Services
-            // 
-            this.Services.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Services.Location = new System.Drawing.Point(0, 297);
-            this.Services.Name = "Services";
-            this.Services.Size = new System.Drawing.Size(81, 35);
-            this.Services.TabIndex = 14;
-            this.Services.Text = "Услуги";
-            this.Services.UseVisualStyleBackColor = true;
-            this.Services.Click += new System.EventHandler(this.Services_Click);
-            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,7 +343,7 @@
         private System.Windows.Forms.Button gluingSheets;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button addDataBase;
+        private System.Windows.Forms.Button addToDataBase;
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Panel panel1;

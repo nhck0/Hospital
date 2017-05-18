@@ -90,7 +90,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(81, 234);
+            this.panel1.Size = new System.Drawing.Size(81, 418);
             this.panel1.TabIndex = 0;
             // 
             // saveChanges
@@ -134,9 +134,9 @@
             this.infoTSM,
             this.infoTableTSM,
             this.infoErrorTSM});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 258);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 442);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(902, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(934, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -150,7 +150,7 @@
             // infoTSM
             // 
             this.infoTSM.Name = "infoTSM";
-            this.infoTSM.Size = new System.Drawing.Size(420, 17);
+            this.infoTSM.Size = new System.Drawing.Size(451, 17);
             this.infoTSM.Spring = true;
             this.infoTSM.Tag = "";
             this.infoTSM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -158,7 +158,7 @@
             // infoTableTSM
             // 
             this.infoTableTSM.Name = "infoTableTSM";
-            this.infoTableTSM.Size = new System.Drawing.Size(420, 17);
+            this.infoTableTSM.Size = new System.Drawing.Size(451, 17);
             this.infoTableTSM.Spring = true;
             this.infoTableTSM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -181,7 +181,7 @@
             this.tabControl1.Location = new System.Drawing.Point(87, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(815, 231);
+            this.tabControl1.Size = new System.Drawing.Size(847, 415);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -191,7 +191,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(807, 205);
+            this.tabPage2.Size = new System.Drawing.Size(839, 389);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Посещения по врачам";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -203,7 +203,7 @@
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(801, 199);
+            this.dataGridView2.Size = new System.Drawing.Size(833, 383);
             this.dataGridView2.TabIndex = 0;
             // 
             // tabPage3
@@ -292,7 +292,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(807, 205);
+            this.tabPage7.Size = new System.Drawing.Size(839, 389);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Ошибки";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -304,7 +304,7 @@
             this.dataGridView7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView7.Location = new System.Drawing.Point(3, 3);
             this.dataGridView7.Name = "dataGridView7";
-            this.dataGridView7.Size = new System.Drawing.Size(801, 199);
+            this.dataGridView7.Size = new System.Drawing.Size(833, 383);
             this.dataGridView7.TabIndex = 0;
             // 
             // actionTSM
@@ -367,7 +367,7 @@
             this.settingsTSM});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(902, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(934, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -390,7 +390,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 280);
+            this.ClientSize = new System.Drawing.Size(934, 464);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
