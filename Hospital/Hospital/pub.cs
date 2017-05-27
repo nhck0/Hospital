@@ -18,7 +18,6 @@ namespace Hospital
         public void sqlBulk(string nameTab, System.Data.DataTable numTab)
         {
             string connectionString = getConnectionString();
-            // Open a connection to database.
             using (SqlConnection connection =
                        new SqlConnection(connectionString))
             {
