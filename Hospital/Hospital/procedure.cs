@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using Microsoft.Office.Interop.Excel;
 using System.IO;
 using System.Globalization;
+using System.Runtime.Remoting;
 
 namespace Hospital
 {
@@ -122,13 +123,22 @@ namespace Hospital
         }
 
         //methods
+        private void printExcel(Microsoft.Office.Interop.Excel.Application ExcelApp, Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet)
+        {
+            ExcelApp.DisplayAlerts = false;
+            ExcelWorkSheet.PrintOutEx(Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            
+            GC.Collect();
+        }
         private void excelSave(DataGridView dgv, TabPage tabp)
         {
             Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
             Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
-            Microsoft.Office.Interop.Excel.Range ExcelRange;
-            Microsoft.Office.Interop.Excel.Range ExcelRange2;
+            Microsoft.Office.Interop.Excel.Range Merge;
+            Microsoft.Office.Interop.Excel.Range Border;
+            Microsoft.Office.Interop.Excel.Range firstColumn;
 
             //Создание книги и листа.
             ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
@@ -151,14 +161,14 @@ namespace Hospital
             ExcelWorkSheet.Range[ExcelWorkSheet.Cells[5, 1], ExcelWorkSheet.Cells[5, dgv.Columns.Count]].Merge(Type.Missing);
             ExcelWorkSheet.Cells[5, 1] = tabp.Text;
             //Выравнивание ячейки по центру.
-            ExcelRange = ExcelWorkSheet.get_Range("A5", "A5");
-            ExcelRange.HorizontalAlignment = Constants.xlCenter;
-            ExcelRange.VerticalAlignment = Constants.xlCenter;
+            Merge = ExcelWorkSheet.get_Range("A5", "A5");
+            Merge.HorizontalAlignment = Constants.xlCenter;
+            Merge.VerticalAlignment = Constants.xlCenter;
 
             //Формирование границ.
-            ExcelRange2 = ExcelWorkSheet.get_Range("5:" + (dgv.Rows.Count + 5), Type.Missing);
-            ExcelRange2 = ExcelWorkSheet.Range[ExcelWorkSheet.Cells[5, 1], ExcelWorkSheet.Cells[(dgv.Rows.Count + 6), dgv.Columns.Count]];
-            ExcelRange2.Borders.ColorIndex = 0; 
+            Border = ExcelWorkSheet.get_Range("5:" + (dgv.Rows.Count + 5), Type.Missing);
+            Border = ExcelWorkSheet.Range[ExcelWorkSheet.Cells[5, 1], ExcelWorkSheet.Cells[(dgv.Rows.Count + 6), dgv.Columns.Count]];
+            Border.Borders.ColorIndex = 0; 
 
             //Выгрузка данных.
             for (int i = 1; i < dgv.ColumnCount + 1; i++)
@@ -170,21 +180,37 @@ namespace Hospital
             {
                 for (int j = 0; j < dgv.ColumnCount; j++)
                 {
-                    if (dgv.Rows[i].Cells[j].Value.ToString() == "")
+                    if (dgv.Rows[i].Cells[j].Value.ToString() == "" && tabp.Text == "Диспансеризация")
                     {
                         ExcelApp.Cells[i + 7, j + 1] = 0;
-                    }else ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
+                    }
+                    else ExcelApp.Cells[i + 7, j + 1] = dgv.Rows[i].Cells[j].Value;
                 }
             }
             //Ширина по размеру текста.
             ExcelApp.Columns.AutoFit();
+            //Ширина первой колонки(начиная с 6ячейки)
+            firstColumn = ExcelWorkSheet.Cells[6, 1];
+            // ВЕРНУТЬ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //if(tabp.Text == "Диспансеризация")
+            //{
+            //    ExcelApp.Columns.AutoFit();
+            //}else firstColumn.Columns.AutoFit();
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            // УДАЛИТЬ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (tabp.Text == "Диспансеризация")
+            {
+                firstColumn = ExcelWorkSheet.Cells[7, 1];
+                firstColumn.Columns.AutoFit();
+            }
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else firstColumn.Columns.AutoFit();
             ExcelApp.DisplayAlerts = false;
             //Автосохранение и присвоение имени отчета.
             ExcelWorkBook.Close(true, folderName + tabp.Text, Type.Missing);
-
-            //Отчистка процессов.
-            ExcelWorkBook = null;
-            ExcelApp = null;
+            //Печать ДОДЕЛАТЬ
+            //     printExcel(ExcelApp, ExcelWorkSheet);
         }
         private void copyToDT()
         {         
@@ -203,7 +229,6 @@ namespace Hospital
                 {
                     datarw[iCol] = row.Cells[iCol].Value;
                 }
-
                 dt.Rows.Add(datarw);
             }
         }
@@ -299,7 +324,7 @@ namespace Hospital
                     }
                 }
             }
-            catch (Exception )
+            catch (Exception  )
             {
                 MessageBox.Show("Обновите отчеты!" , "Ошибка",
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -323,6 +348,30 @@ namespace Hospital
                 }
             }
             else saveChanges.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView3.Rows.Count ; i++)
+            {
+                dataGridView3.Rows[i].Cells[2].Value = i + 1;
+                dataGridView3.Rows[i].Cells[3].Value = "Иванов Иван Иванович";
+            }
+            for (int i = 0; i < dataGridView4.Rows.Count; i++)
+            {
+                dataGridView4.Rows[i].Cells[1].Value = i + 1;
+                dataGridView4.Rows[i].Cells[2].Value = "Иванов Иван Иванович";
+            }
+            for (int i = 0; i < dataGridView6.Rows.Count; i++)
+            {
+                dataGridView6.Rows[i].Cells[1].Value = i + 1;
+                dataGridView6.Rows[i].Cells[0].Value = "Иванов Иван Иванович";
+            }
         }
     }
 }

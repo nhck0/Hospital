@@ -114,12 +114,7 @@ namespace Hospital
 
                         newTable.Columns.Add(tempC);
                     }
-                    newTable.Create();
-                    //  key
-                    //Index index = new Index(newTable, "ID");
-                    //index.IndexKeyType = IndexKeyType.DriPrimaryKey;
-                    //index.IndexedColumns.Add(new IndexedColumn(index, "ID"));
-                    //newTable.Indexes.Add(index);
+                    newTable.Create();                  
                 }
                 //Заполняем таблицу данными из dataSet
                 p.sqlBulk(dateTimePicker1.Text, main.ds.Tables[0]);
@@ -172,3 +167,14 @@ namespace Hospital
 
     }
 }
+
+
+
+
+
+
+//  key
+//Index index = new Index(newTable, "ID");
+//index.IndexKeyType = IndexKeyType.DriPrimaryKey;
+//index.IndexedColumns.Add(new IndexedColumn(index, "ID"));
+//newTable.Indexes.Add(index);

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(procedure));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.saveChanges = new System.Windows.Forms.Button();
             this.saveReports = new System.Windows.Forms.Button();
             this.updateReports = new System.Windows.Forms.Button();
@@ -63,6 +64,7 @@
             this.settingsTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.saveDirTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -84,6 +86,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.saveChanges);
             this.panel1.Controls.Add(this.saveReports);
             this.panel1.Controls.Add(this.updateReports);
@@ -92,6 +95,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(81, 418);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(0, 107);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(81, 35);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Сохранить и распечатать";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // saveChanges
             // 
@@ -203,6 +218,7 @@
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(833, 383);
             this.dataGridView2.TabIndex = 0;
             // 
@@ -211,7 +227,7 @@
             this.tabPage3.Controls.Add(this.dataGridView3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(807, 205);
+            this.tabPage3.Size = new System.Drawing.Size(839, 389);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Нормативы мед помощи";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -223,7 +239,7 @@
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(0, 0);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(807, 205);
+            this.dataGridView3.Size = new System.Drawing.Size(839, 389);
             this.dataGridView3.TabIndex = 0;
             // 
             // tabPage4
@@ -231,7 +247,7 @@
             this.tabPage4.Controls.Add(this.dataGridView4);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(807, 205);
+            this.tabPage4.Size = new System.Drawing.Size(839, 389);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Услуги амбулаторной хирургии";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -243,7 +259,7 @@
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(807, 205);
+            this.dataGridView4.Size = new System.Drawing.Size(839, 389);
             this.dataGridView4.TabIndex = 0;
             // 
             // tabPage5
@@ -251,7 +267,7 @@
             this.tabPage5.Controls.Add(this.dataGridView5);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(807, 205);
+            this.tabPage5.Size = new System.Drawing.Size(839, 389);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Посещения по отделениям";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -263,7 +279,7 @@
             this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView5.Location = new System.Drawing.Point(0, 0);
             this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.Size = new System.Drawing.Size(807, 205);
+            this.dataGridView5.Size = new System.Drawing.Size(839, 389);
             this.dataGridView5.TabIndex = 0;
             // 
             // tabPage6
@@ -271,7 +287,7 @@
             this.tabPage6.Controls.Add(this.dataGridView6);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(807, 205);
+            this.tabPage6.Size = new System.Drawing.Size(839, 389);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Диспансеризация";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -283,7 +299,7 @@
             this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView6.Location = new System.Drawing.Point(0, 0);
             this.dataGridView6.Name = "dataGridView6";
-            this.dataGridView6.Size = new System.Drawing.Size(807, 205);
+            this.dataGridView6.Size = new System.Drawing.Size(839, 389);
             this.dataGridView6.TabIndex = 0;
             // 
             // tabPage7
@@ -374,7 +390,8 @@
             // settingsTSM
             // 
             this.settingsTSM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveDirTSM});
+            this.saveDirTSM,
+            this.toolStripMenuItem2});
             this.settingsTSM.Name = "settingsTSM";
             this.settingsTSM.Size = new System.Drawing.Size(79, 20);
             this.settingsTSM.Text = "Настройки";
@@ -385,6 +402,13 @@
             this.saveDirTSM.Size = new System.Drawing.Size(253, 22);
             this.saveDirTSM.Text = "Директория сохранения отчетов";
             this.saveDirTSM.Click += new System.EventHandler(this.saveDirTSM_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(253, 22);
+            this.toolStripMenuItem2.Text = "123";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // procedure
             // 
@@ -462,5 +486,7 @@
         private System.Windows.Forms.ToolStripMenuItem settingsTSM;
         private System.Windows.Forms.ToolStripMenuItem saveDirTSM;
         private System.Windows.Forms.ToolStripMenuItem openDirTSM;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

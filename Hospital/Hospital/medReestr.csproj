@@ -86,14 +86,6 @@
     <Compile Include="aboutTheProgram.Designer.cs">
       <DependentUpon>aboutTheProgram.cs</DependentUpon>
     </Compile>
-    <Compile Include="hospitalDataSet.cs">
-      <DependentUpon>hospitalDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="hospitalDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>hospitalDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,17 +156,6 @@
     <EmbeddedResource Include="sqlDataBase.resx">
       <DependentUpon>sqlDataBase.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="hospitalDataSet.xsc">
-      <DependentUpon>hospitalDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="hospitalDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>hospitalDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="hospitalDataSet.xss">
-      <DependentUpon>hospitalDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -15,11 +15,13 @@ using System.Data.OleDb;
 
 namespace Hospital
 {
+   
     public partial class main : Form
     {
         public main()
         {
             InitializeComponent();
+            
         }
 
         OpenFileDialog ofd = new OpenFileDialog();
@@ -27,11 +29,13 @@ namespace Hospital
        // DataTable tb2 = new DataTable();
         public DataSet ds = new DataSet();
         pub p = new pub();
+        
 
         private void Main_Load(object sender, EventArgs e)
         {
             infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
-           
+            backgroundWorker1.RunWorkerAsync();
+
             addToDataBase.Enabled = false;
         }
 
@@ -82,7 +86,7 @@ namespace Hospital
                     infoRowTSM.Text = "Количество записей: " + dataGridView1.Rows.Count.ToString();
                     
                     // Заперт выгрузки пустых файлов.
-                    if (dataGridView1.Rows.Count != 0 && dataGridView1.Rows.Count < 20000)
+                    if (dataGridView1.Rows.Count != 0 && dataGridView1.Columns[0].Name == "Код")
                     {
                         using (SqlConnection sqlcon = new SqlConnection(p.getConnectionString()))
                         {
@@ -172,7 +176,7 @@ namespace Hospital
                 ofd.DefaultExt = "*.xls;*.xlsx";
                 ofd.Filter = "All files(*.*)|*.*|Excel 2007(*.xlsx)|*.xlsx|Excel 2003(*.xls)|*.xls";
                 ofd.Title = "Выберите документ для загрузки данных";
-
+               
                 importTB(columnsName);
             }
             catch (Exception ex)
@@ -185,12 +189,15 @@ namespace Hospital
         private void importTB(string columnsName)
         {
             if (ofd.ShowDialog() == DialogResult.OK)
-            {               
+            {
+                
                 ds.Clear();
                 dt.Rows.Clear();
                 dt.Columns.Clear();
+                
                 try
                 {
+                   
                     infoFolderTSM.Text = "Директория файла: " + ofd.FileName;
                     infoFolderTSM.Visible = true;
                     infoDBTSM.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -213,7 +220,7 @@ namespace Hospital
                     //Запрос на выборку
                     string select = String.Format("SELECT " + columnsName + " FROM[{0}]", sheet1); 
 
-                    tabControl1.TabPages[0].Text = sheet1.ToString()/*Substring(1, sheet1.Length -3)*/;
+                    tabControl1.TabPages[0].Text = sheet1.ToString();
                     //Вызов запроса
                     System.Data.OleDb.OleDbDataAdapter ad =
                         new System.Data.OleDb.OleDbDataAdapter(select, con);
@@ -226,6 +233,19 @@ namespace Hospital
                     dataGridView1.DataSource = dt;
                     addToDataBase.Enabled = true;
                     con.Close();
+
+
+                    // УДАЛИТЬ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    if (dataGridView1.Columns[0].Name == "Номер истории болезни")
+                    {
+                        dataGridView1.Columns[14].Visible = false;
+                    }
+                    if (dataGridView1.Columns[0].Name == "Код")
+                    {
+                        dataGridView1.Columns[0].Visible = false;
+                        dataGridView1.Columns[1].Visible = false;
+                    }
+                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                     // Для скливания листов
                     //if (schemaTable.Rows.Count == 2)
@@ -247,7 +267,6 @@ namespace Hospital
                 }
                 catch (Exception)
                 {
-                    GC.Collect();
                     addToDataBase.Enabled = false;
                     MessageBox.Show("Содержимое файла не соответствует требуемому формату", "Ошибка!",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -257,7 +276,6 @@ namespace Hospital
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
-            GC.Collect();
             Properties.Settings.Default.Save();
             Application.Exit();
         }
@@ -298,6 +316,16 @@ namespace Hospital
                 serv.ShowDialog();
             }
             
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            //progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //progressBar1.MarqueeAnimationSpeed = 30;
         }
     }
 }

@@ -118,11 +118,13 @@ namespace Hospital
                 proc.dataGridView3.DataSource = ds.Tables[4];
                 proc.dataGridView5.DataSource = ds.Tables[5];
                 this.Hide();
+
+                
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 proc.infoTableTSM.Text = "";
-                MessageBox.Show("Такой таблицы не существует!", "Ошибка!",
+                MessageBox.Show("Такой таблицы не существует!" + ex, "Ошибка!",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);              
             }
         }
