@@ -119,12 +119,35 @@ namespace Hospital
                 proc.dataGridView5.DataSource = ds.Tables[5];
                 this.Hide();
 
-                
+
+
+
+                // УДАЛИТЬ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                for (int i = 0; i < proc.dataGridView3.Rows.Count; i++)
+                {
+                    proc.dataGridView3.Rows[i].Cells[2].Value = i + 1;
+                    proc.dataGridView3.Rows[i].Cells[3].Value = "Иванов Иван Иванович";
+                }
+                for (int i = 0; i < proc.dataGridView4.Rows.Count; i++)
+                {
+                    proc.dataGridView4.Rows[i].Cells[1].Value = i + 1;
+                    proc.dataGridView4.Rows[i].Cells[2].Value = "Иванов Иван Иванович";
+                }
+                for (int i = 0; i < proc.dataGridView6.Rows.Count; i++)
+                {
+                    proc.dataGridView6.Rows[i].Cells[1].Value = i + 1;
+                    proc.dataGridView6.Rows[i].Cells[0].Value = "Иванов Иван Иванович";
+                } 
+                proc.dataGridView2.Columns[1].Visible = false;
+                proc.dataGridView2.Columns[2].Visible = false;
+                proc.dataGridView5.Columns[2].Visible = false;
+                proc.dataGridView5.Columns[4].Visible = false;
+                // УДАЛИТЬ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 proc.infoTableTSM.Text = "";
-                MessageBox.Show("Такой таблицы не существует!" + ex, "Ошибка!",
+                MessageBox.Show("Такой таблицы не существует!", "Ошибка!",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);              
             }
         }

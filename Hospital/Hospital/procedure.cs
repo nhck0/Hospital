@@ -123,10 +123,10 @@ namespace Hospital
         }
 
         //methods
-        private void printExcel(Microsoft.Office.Interop.Excel.Application ExcelApp, Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet)
+        private void printExcel(Microsoft.Office.Interop.Excel.Application ExcelApp, Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook, Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet)
         {
             ExcelApp.DisplayAlerts = false;
-            ExcelWorkSheet.PrintOutEx(Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+            ExcelWorkBook.PrintOut(Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             
             GC.Collect();
@@ -208,9 +208,13 @@ namespace Hospital
             else firstColumn.Columns.AutoFit();
             ExcelApp.DisplayAlerts = false;
             //Автосохранение и присвоение имени отчета.
+            if(button1.Enabled == false)
+            {
+                printExcel(ExcelApp, ExcelWorkBook, ExcelWorkSheet);
+            }
             ExcelWorkBook.Close(true, folderName + tabp.Text, Type.Missing);
             //Печать ДОДЕЛАТЬ
-            //     printExcel(ExcelApp, ExcelWorkSheet);
+           
         }
         private void copyToDT()
         {         
@@ -352,25 +356,17 @@ namespace Hospital
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < dataGridView3.Rows.Count ; i++)
+            if (Properties.Settings.Default.saveDir == "")
             {
-                dataGridView3.Rows[i].Cells[2].Value = i + 1;
-                dataGridView3.Rows[i].Cells[3].Value = "Иванов Иван Иванович";
+                MessageBox.Show("Укажите директорию сохранения отчетов!",
+                    "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            for (int i = 0; i < dataGridView4.Rows.Count; i++)
+            else
             {
-                dataGridView4.Rows[i].Cells[1].Value = i + 1;
-                dataGridView4.Rows[i].Cells[2].Value = "Иванов Иван Иванович";
-            }
-            for (int i = 0; i < dataGridView6.Rows.Count; i++)
-            {
-                dataGridView6.Rows[i].Cells[1].Value = i + 1;
-                dataGridView6.Rows[i].Cells[0].Value = "Иванов Иван Иванович";
+                button1.Enabled = false;
+                overwriting();
+                GC.Collect();
+                button1.Enabled = true;
             }
         }
     }

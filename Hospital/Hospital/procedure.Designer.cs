@@ -64,7 +64,6 @@
             this.settingsTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.saveDirTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -99,7 +98,6 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(0, 107);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(81, 35);
@@ -390,8 +388,7 @@
             // settingsTSM
             // 
             this.settingsTSM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveDirTSM,
-            this.toolStripMenuItem2});
+            this.saveDirTSM});
             this.settingsTSM.Name = "settingsTSM";
             this.settingsTSM.Size = new System.Drawing.Size(79, 20);
             this.settingsTSM.Text = "Настройки";
@@ -402,13 +399,6 @@
             this.saveDirTSM.Size = new System.Drawing.Size(253, 22);
             this.saveDirTSM.Text = "Директория сохранения отчетов";
             this.saveDirTSM.Click += new System.EventHandler(this.saveDirTSM_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(253, 22);
-            this.toolStripMenuItem2.Text = "123";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // procedure
             // 
@@ -457,7 +447,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button updateReports;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
@@ -487,6 +476,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveDirTSM;
         private System.Windows.Forms.ToolStripMenuItem openDirTSM;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        public System.Windows.Forms.TabPage tabPage3;
     }
 }

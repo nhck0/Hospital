@@ -34,7 +34,6 @@ namespace Hospital
         private void Main_Load(object sender, EventArgs e)
         {
             infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
-            backgroundWorker1.RunWorkerAsync();
 
             addToDataBase.Enabled = false;
         }
@@ -194,7 +193,7 @@ namespace Hospital
                 ds.Clear();
                 dt.Rows.Clear();
                 dt.Columns.Clear();
-                
+                //backgroundWorker1.RunWorkerAsync();
                 try
                 {
                    
@@ -216,6 +215,8 @@ namespace Hospital
                     new object[] { null, null, null, "TABLE" });
 
                     //Номер листа
+                    
+
                     string sheet1 = (string)schemaTable.Rows[0].ItemArray[2];
                     //Запрос на выборку
                     string select = String.Format("SELECT " + columnsName + " FROM[{0}]", sheet1); 
@@ -320,11 +321,16 @@ namespace Hospital
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            //progressBar1.Value = e.ProgressPercentage;
+            
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            for (int i = 0; i == 0 ; i++)
+            {
+                ((BackgroundWorker)sender).ReportProgress(i);
+               
+            }
             //progressBar1.MarqueeAnimationSpeed = 30;
         }
     }
