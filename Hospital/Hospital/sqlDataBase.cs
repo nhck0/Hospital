@@ -39,15 +39,15 @@ namespace Hospital
                 }
                 
             }
-            catch (SqlException ex )
+            catch (SqlException)
             {
-                MessageBox.Show("Нет соединения с базой!" + ex, "Подключение...",
+                MessageBox.Show("Нет соединения с базой!", "Подключение...",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Нет соединения с базой!" + ex, "Подключение...",
+                MessageBox.Show("Нет соединения с базой!", "Подключение...",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

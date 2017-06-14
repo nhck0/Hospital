@@ -90,15 +90,22 @@ namespace Hospital
 
         private void openDirTSM_Click(object sender, EventArgs e)
         {
-            try
+            if(Properties.Settings.Default.saveDir == "")
             {
-                System.Diagnostics.Process.Start(folderName);
+                MessageBox.Show("Укажите директорию сохранения отчетов!",
+                   "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (Exception)
+            else
             {
-                System.Diagnostics.Process.Start(Properties.Settings.Default.saveDir);
+                try
+                {
+                    System.Diagnostics.Process.Start(folderName);
+                }
+                catch (Exception)
+                {
+                    System.Diagnostics.Process.Start(Properties.Settings.Default.saveDir);
+                }
             }
-
         }
 
         private void aboutTheProgramTSM_Click(object sender, EventArgs e)

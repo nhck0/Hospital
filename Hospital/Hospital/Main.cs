@@ -30,10 +30,13 @@ namespace Hospital
         public DataSet ds = new DataSet();
         pub p = new pub();
         
-
         private void Main_Load(object sender, EventArgs e)
         {
-            infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
+            if(Properties.Settings.Default.sqlDataBaseName == "")
+            {
+                infoDBTSM.Text = "Подключено к базе данных: Нет подключениея";
+            }
+            else infoDBTSM.Text = "Подключено к базе данных: " + Properties.Settings.Default.sqlDataBaseName;
 
             addToDataBase.Enabled = false;
         }
@@ -245,6 +248,8 @@ namespace Hospital
                     {
                         dataGridView1.Columns[0].Visible = false;
                         dataGridView1.Columns[1].Visible = false;
+                        dataGridView1.Columns[10].Visible = false;
+                        dataGridView1.Columns[14].Visible = false;
                     }
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -266,10 +271,10 @@ namespace Hospital
                     //    dataGridView1.DataSource = tb2;
                     //}
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     addToDataBase.Enabled = false;
-                    MessageBox.Show("Содержимое файла не соответствует требуемому формату", "Ошибка!",
+                    MessageBox.Show("Содержимое файла не соответствует требуемому формату" + ex.Message, "Ошибка!" ,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

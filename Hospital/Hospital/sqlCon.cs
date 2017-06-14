@@ -128,7 +128,7 @@ namespace Hospital
                 if (Properties.Settings.Default.sqlDataBaseName == "")
                 {
                     MessageBox.Show("Проверьте подключение к базе данных!",
-                   "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if (main.dataGridView1.Columns[0].Name == "Номер истории болезни")
                 {

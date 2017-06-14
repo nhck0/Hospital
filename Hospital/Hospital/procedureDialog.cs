@@ -126,6 +126,7 @@ namespace Hospital
                 for (int i = 0; i < proc.dataGridView3.Rows.Count; i++)
                 {
                     proc.dataGridView3.Rows[i].Cells[2].Value = i + 1;
+                    proc.dataGridView3.Rows[i].Cells[1].Value = i + 1;
                     proc.dataGridView3.Rows[i].Cells[3].Value = "Иванов Иван Иванович";
                 }
                 for (int i = 0; i < proc.dataGridView4.Rows.Count; i++)
@@ -189,7 +190,7 @@ namespace Hospital
                     proc.tabControl1.SelectedIndex = 5;
                     proc.saveChanges.Enabled = true;
                     MessageBox.Show("Найдены ошибки!", "Ошибки!",
-                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);   
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);   
                 }
                 
             }
